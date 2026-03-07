@@ -17,6 +17,8 @@ import {
 } from './pages';
 
 export const darkThemeLocalStorageName = 'darkTheme';
+//Fast refresh issue
+// eslint-disable-next-line
 export const checkDefaultTheme = () => {
   const isDarkTheme =
     localStorage.getItem(darkThemeLocalStorageName) ===

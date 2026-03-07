@@ -3,6 +3,9 @@
 **/dist/
 **/build/
 
+# Vite specific
+**/.vite/
+
 # Logs
 **/logs
 *.log
@@ -21,6 +24,7 @@ client/node_modules/
 client/dist/
 client/.DS_Store
 client/src/lib/api/generated
+client/.vite/
 
 
 # Server folder: Node Express TypeScript server
