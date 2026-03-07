@@ -3,6 +3,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 // #### IMPORTS - packages
+import 'express-async-errors'; //middleware that helps handle errors that occur within asynchronous functions. It catches unhandled errors inside async/await functions and forwards them to Express.js's error handling middleware, preventing the Node.js process from crashing.
+//You do not need try catch for basic crud async operation
 import express from 'express';
 import morgan from 'morgan';
 import { ErrorRequestHandler } from 'express';
