@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.article`
+interface StatItemProps {
+  bcg: string;
+}
+
+const Wrapper = styled.article<StatItemProps>`
   padding: 2rem;
   background: var(--background-secondary-color);
   border-bottom: 5px solid ${(props) => props.color};
