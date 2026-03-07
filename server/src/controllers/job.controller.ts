@@ -1,80 +1,79 @@
 import { RequestHandler } from 'express';
-let jobs = [
-  {
-    id: crypto.randomUUID(),
-    company: 'apple',
-    position: 'front-end',
-  },
-  {
-    id: crypto.randomUUID(),
-    company: 'google',
-    position: 'back-end',
-  },
-];
+import jobModel from '../models/job.model';
+import { StatusCodes } from 'http-status-codes';
 
 const getAllJobs: RequestHandler = async (req, res) => {
-  res.status(200).json({ jobs });
+  const jobs = await jobModel.find({});
+
+  res.status(StatusCodes.OK).json({ jobs });
 };
 
 const getJob: RequestHandler = async (req, res) => {
   const { id } = req.params;
-  const job = jobs.find((job) => job.id === id);
+  const job = await jobModel.findById(id);
   if (!job) {
     return res
-      .status(404)
+      .status(StatusCodes.NOT_FOUND)
       .json({ msg: `no job with id ${id}` });
   }
-  res.status(200).json({ job });
+  res.status(StatusCodes.OK).json({ job });
 };
 
 const createJob: RequestHandler = async (req, res) => {
   const { company, position } = req.body;
   if (!company || !position) {
-    return res.status(400).json({
+    return res.status(StatusCodes.BAD_REQUEST).json({
       msg: 'place provide company and position',
     });
   }
-  const job = {
-    id: crypto.randomUUID(),
+
+  const jobDocument = await jobModel.create({
     company,
     position,
-  };
-  jobs.push(job);
-  res.status(200).json({ job });
+  });
+
+  res
+    .status(StatusCodes.CREATED)
+    .json({ job: jobDocument });
 };
 
 const updateJob: RequestHandler = async (req, res) => {
   const { company, position } = req.body;
   if (!company || !position) {
     return res
-      .status(400)
+      .status(StatusCodes.BAD_REQUEST)
       .json({ msg: 'please provide company and position' });
   }
   const { id } = req.params;
-  const job = jobs.find((job) => job.id === id);
-  if (!job) {
+
+  const updatedJob = await jobModel.findByIdAndUpdate(
+    id,
+    { company, position },
+    {
+      new: true,
+    },
+  );
+
+  if (!updatedJob) {
     return res
-      .status(404)
+      .status(StatusCodes.NOT_FOUND)
       .json({ msg: `no job with id ${id}` });
   }
 
-  job.company = company;
-  job.position = position;
-  res.status(200).json({ msg: 'job modified', job });
+  res.status(StatusCodes.OK).json({ job: updatedJob });
 };
 
 const deleteJob: RequestHandler = async (req, res) => {
   const { id } = req.params;
-  const job = jobs.find((job) => job.id === id);
-  if (!job) {
+  const removedJob = await jobModel.findByIdAndDelete(id);
+
+  if (!removedJob) {
     return res
-      .status(404)
+      .status(StatusCodes.NOT_FOUND)
       .json({ msg: `no job with id ${id}` });
   }
-  const newJobs = jobs.filter((job) => job.id !== id);
-  jobs = newJobs;
 
-  res.status(200).json({ msg: 'job deleted' });
+  res.status(StatusCodes.OK).json({ msg: 'job deleted' });
 };
 
 export default {
