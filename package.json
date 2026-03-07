@@ -1,0 +1,15 @@
+{
+    "name": "mern-basics",
+    "version": "1.0.0",
+    "description": "MERN stack project - Client and Server",
+    "main": "server/dist/server.js",
+    "scripts": {
+        "setup-project": "npm install --prefix client && npm install --prefix server",
+        "client": "npm run dev --prefix client",
+        "server": "npm run dev:watch --prefix server",
+        "build": "npm run build --prefix client && echo 'Server installation will begin in 3 seconds...' && sleep 3 && npm run build --prefix server"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
