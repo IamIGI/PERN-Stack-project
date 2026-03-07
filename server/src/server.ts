@@ -6,13 +6,13 @@ dotenv.config();
 import express from 'express';
 import morgan from 'morgan';
 import { ErrorRequestHandler } from 'express';
+import mongoose from 'mongoose';
 
 // ## IMPORTS - routes
 import jobRouter from './routes/job.router';
 
-const app = express();
-
 // #### MIDDLEWARES
+const app = express();
 //Accept JSON files
 app.use(express.json());
 // HTTP request logger middleware for node.js
@@ -41,7 +41,14 @@ const errorHandler: ErrorRequestHandler = (
 };
 app.use(errorHandler);
 
-const port = process.env.PORT || 5101;
-app.listen(port, () => {
-  console.log(`Server running on port: ${port}...`);
-});
+try {
+  const PORT = process.env.PORT || 5101;
+  const MONGODB_URL = process.env.MONGODB_URL!;
+  await mongoose.connect(MONGODB_URL);
+  app.listen(PORT, () => {
+    console.log(`server running on PORT ${PORT}....`);
+  });
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}
