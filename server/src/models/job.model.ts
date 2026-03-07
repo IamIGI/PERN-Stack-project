@@ -9,6 +9,7 @@ export interface IJob extends Document {
   jobLocation: string;
   createdAt: Date;
   updatedAt: Date;
+  createdBy: mongoose.Types.ObjectId;
 }
 
 const JobSchema = new mongoose.Schema<IJob>(
@@ -37,6 +38,10 @@ const JobSchema = new mongoose.Schema<IJob>(
       type: String,
       default: 'my city',
       trim: true,
+    },
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: 'users',
     },
   },
   { timestamps: true },

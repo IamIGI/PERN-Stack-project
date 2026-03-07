@@ -1,3 +1,5 @@
+export const oneDay = 1000 * 60 * 60 * 24;
+
 export enum JobStatus {
   PENDING = 'pending',
   INTERVIEW = 'interview',

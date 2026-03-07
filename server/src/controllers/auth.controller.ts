@@ -3,6 +3,8 @@ import userModel, { IUser } from '../models/user.model';
 import { StatusCodes } from 'http-status-codes';
 import passwordUtils from '../utils/password.utils';
 import { UnauthenticatedError } from '../errors/customErrors';
+import tokenUtils from '../utils/token.utils';
+import { oneDay } from '../utils/constants';
 
 const register: RequestHandler = async (req, res) => {
   const hashedPassword = await passwordUtils.hashPassword(
@@ -37,7 +39,19 @@ const login: RequestHandler = async (req, res) => {
   if (!isValidUser)
     throw new UnauthenticatedError('invalid credentials');
 
-  res.send('login route');
+  const token = tokenUtils.createJWT({
+    userId: user._id,
+    role: user.role,
+  });
+
+  res.cookie('token', token, {
+    httpOnly: true, //can't be access by JS
+    expires: new Date(Date.now() + oneDay),
+    secure: process.env.NODE_ENV === 'production', //https or http
+  });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: 'User logged in' });
 };
 
 export default {

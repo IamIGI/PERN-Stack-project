@@ -8,6 +8,7 @@ import 'express-async-errors'; //middleware that helps handle errors that occur 
 import express from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 // ## IMPORTS - routes
 import jobRouter from './routes/job.router';
@@ -16,6 +17,7 @@ import authRouter from './routes/auth.router';
 //## IMPORTS - middleware
 import errorHandlerMiddleware from './middleware/errorHandler.middleware';
 import notFoundHandlerMiddleware from './middleware/notFoundHandler.middleware';
+import authMiddleware from './middleware/auth.middleware';
 
 // #### MIDDLEWARES
 const app = express();
@@ -25,9 +27,14 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+app.use(cookieParser());
 
 // ## ROUTES
-app.use('/api/v1/jobs', jobRouter);
+app.use(
+  '/api/v1/jobs',
+  authMiddleware.authenticateUser,
+  jobRouter,
+);
 app.use('/api/v1/auth', authRouter);
 
 /// #### CRITICAL MIDDLEWARES
