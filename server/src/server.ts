@@ -7,11 +7,12 @@ import 'express-async-errors'; //middleware that helps handle errors that occur 
 //You do not need try catch for basic crud async operation
 import express from 'express';
 import morgan from 'morgan';
-import { ErrorRequestHandler } from 'express';
 import mongoose from 'mongoose';
 
 // ## IMPORTS - routes
 import jobRouter from './routes/job.router';
+import errorHandlerMiddleware from './middleware/errorHandler.middleware';
+import notFoundHandlerMiddleware from './middleware/notFoundHandler.middleware';
 
 // #### MIDDLEWARES
 const app = express();
@@ -25,23 +26,9 @@ if (process.env.NODE_ENV === 'development') {
 // ## ROUTES
 app.use('/api/v1/jobs', jobRouter);
 
-// #### Not Found Middleware
-app.use('*', (req, res) => {
-  res.status(404).json({ msg: '404-not found' });
-});
-// #### Error Middleware
-const errorHandler: ErrorRequestHandler = (
-  err,
-  req,
-  res,
-  next,
-) => {
-  console.log(err);
-  res
-    .status(500)
-    .json({ msg: 'something went wrong', err });
-};
-app.use(errorHandler);
+/// #### CRITICAL MIDDLEWARES
+app.use('*', notFoundHandlerMiddleware);
+app.use(errorHandlerMiddleware);
 
 try {
   const PORT = process.env.PORT || 5101;
