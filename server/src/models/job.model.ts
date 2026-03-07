@@ -1,13 +1,5 @@
 import mongoose, { Document } from 'mongoose';
-
-export type JobStatus =
-  | 'interview'
-  | 'declined'
-  | 'pending';
-export type JobType =
-  | 'full-time'
-  | 'part-time'
-  | 'internship';
+import { JobStatus, JobType } from '../utils/constants';
 
 export interface IJob extends Document {
   company: string;
@@ -33,13 +25,13 @@ const JobSchema = new mongoose.Schema<IJob>(
     },
     jobStatus: {
       type: String,
-      enum: ['interview', 'declined', 'pending'],
-      default: 'pending',
+      enum: Object.values(JobStatus),
+      default: JobStatus.PENDING,
     },
     jobType: {
       type: String,
-      enum: ['full-time', 'part-time', 'internship'],
-      default: 'full-time',
+      enum: Object.values(JobType),
+      default: JobType.FULL_TIME,
     },
     jobLocation: {
       type: String,
