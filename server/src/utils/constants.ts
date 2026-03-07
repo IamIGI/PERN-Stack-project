@@ -16,3 +16,8 @@ export enum JobSortBy {
   ASCENDING = 'a-z',
   DESCENDING = 'z-a',
 }
+
+export enum UserRole {
+  USER = 'user',
+  ADMIN = 'admin',
+}

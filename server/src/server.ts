@@ -11,6 +11,9 @@ import mongoose from 'mongoose';
 
 // ## IMPORTS - routes
 import jobRouter from './routes/job.router';
+import authRouter from './routes/auth.router';
+
+//## IMPORTS - middleware
 import errorHandlerMiddleware from './middleware/errorHandler.middleware';
 import notFoundHandlerMiddleware from './middleware/notFoundHandler.middleware';
 
@@ -25,6 +28,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // ## ROUTES
 app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/auth', authRouter);
 
 /// #### CRITICAL MIDDLEWARES
 app.use('*', notFoundHandlerMiddleware);

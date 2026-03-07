@@ -14,10 +14,11 @@ import {
   BadRequestError,
   NotFoundError,
 } from '../errors/customErrors';
-import generalUtil from '../utils/general.util';
+import generalUtil from '../utils/general.utils';
 import { JobStatus, JobType } from '../utils/constants';
 import mongoose from 'mongoose';
 import jobModel from '../models/job.model';
+import userModel from '../models/user.model';
 
 //#### INTER
 const withValidationErrors = (
@@ -44,7 +45,7 @@ const withValidationErrors = (
   ];
 };
 
-const isRequiredValidator = (name: string) => {
+const requiredInput = (name: string) => {
   const displayName = generalUtil.camelToWords(name);
   return body(name)
     .notEmpty()
@@ -54,9 +55,9 @@ const isRequiredValidator = (name: string) => {
 
 //#### EXPORT
 const validateJobInput = withValidationErrors([
-  isRequiredValidator('company'),
-  isRequiredValidator('position'),
-  isRequiredValidator('jobLocation'),
+  requiredInput('company'),
+  requiredInput('position'),
+  requiredInput('jobLocation'),
   body('jobStatus')
     .isIn(Object.values(JobStatus))
     .withMessage('invalid job status'),
@@ -78,7 +79,40 @@ const validateIdParam = withValidationErrors([
   }),
 ]);
 
+const validateRegisterInput = withValidationErrors([
+  requiredInput('name'),
+  requiredInput('email')
+    .isEmail()
+    .withMessage('invalid email format')
+    .custom(async (email) => {
+      const user = await userModel.findOne({ email });
+      if (user) {
+        throw new BadRequestError('email already exists');
+      }
+    }),
+  requiredInput('password')
+    .isLength({ min: 8 })
+    .withMessage(
+      'password must be at least 8 characters long',
+    ),
+  requiredInput('location'),
+  requiredInput('lastName'),
+]);
+
+export const validateLoginInput = withValidationErrors([
+  requiredInput('email')
+    .isEmail()
+    .withMessage('invalid email format'),
+  requiredInput('password')
+    .isLength({ min: 8 })
+    .withMessage(
+      'password must be at least 8 characters long',
+    ),
+]);
+
 export default {
   validateJobInput,
   validateIdParam,
+  validateRegisterInput,
+  validateLoginInput,
 };
