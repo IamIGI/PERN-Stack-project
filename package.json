@@ -7,9 +7,13 @@
         "setup-project": "npm install --prefix client && npm install --prefix server",
         "client": "npm run dev --prefix client",
         "server": "npm run dev:watch --prefix server",
-        "build": "npm run build --prefix client && echo 'Server installation will begin in 3 seconds...' && sleep 3 && npm run build --prefix server"
+        "build": "npm run build --prefix client && echo 'Server installation will begin in 3 seconds...' && sleep 3 && npm run build --prefix server",
+        "dev:app": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\""
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^9.2.1"
+    }
 }
