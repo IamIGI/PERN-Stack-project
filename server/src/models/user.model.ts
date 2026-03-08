@@ -4,7 +4,7 @@ import { UserRole } from '../utils/constants';
 export interface IUser extends Document {
   name: string;
   email: string;
-  password: string;
+  password?: string;
   lastName: string;
   location: string;
   role: UserRole;
@@ -28,5 +28,13 @@ const UserSchema = new mongoose.Schema<IUser>({
     default: UserRole.USER,
   },
 });
+
+//arrow function won't work, use function with 'this' keyword
+UserSchema.methods.toJSON = function () {
+  var obj = this.toObject() as IUser;
+  delete obj.password;
+
+  return obj;
+};
 
 export default mongoose.model<IUser>('users', UserSchema);

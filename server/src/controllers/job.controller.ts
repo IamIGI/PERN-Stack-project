@@ -3,7 +3,9 @@ import jobModel from '../models/job.model';
 import { StatusCodes } from 'http-status-codes';
 
 const getAllJobs: RequestHandler = async (req, res) => {
-  const jobs = await jobModel.find({});
+  const jobs = await jobModel.find({
+    createdBy: req.user?.userId,
+  });
 
   res.status(StatusCodes.OK).json({ jobs });
 };
@@ -17,12 +19,8 @@ const getJob: RequestHandler = async (req, res) => {
 };
 
 const createJob: RequestHandler = async (req, res) => {
-  const { company, position } = req.body;
-
-  const jobDocument = await jobModel.create({
-    company,
-    position,
-  });
+  req.body.createdBy = req.user?.userId;
+  const jobDocument = await jobModel.create(req.body);
 
   res
     .status(StatusCodes.CREATED)
