@@ -110,6 +110,7 @@ const validateJobInput = withValidationErrors([
 
 const validateJobIdParam = withValidationErrors([
   param('id').custom(async (value: string, { req }) => {
+    console.log('Debug: ', value);
     const isValidID =
       mongoose.Types.ObjectId.isValid(value);
     if (!isValidID)
