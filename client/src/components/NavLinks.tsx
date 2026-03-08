@@ -1,4 +1,5 @@
 import { useDashboardContext } from '../pages/DashboardLayout';
+import { UserRole } from '../types';
 import links from '../utils/links';
 import { NavLink } from 'react-router-dom';
 
@@ -13,7 +14,11 @@ const NavLinks = ({ isBigSidebar }: Props) => {
     <div className="nav-links">
       {links.map((link) => {
         const { text, path, icon } = link;
-        // admin user
+        const { role } = user!;
+
+        if (path === 'admin' && role !== UserRole.ADMIN)
+          return;
+
         return (
           <NavLink
             to={path}
