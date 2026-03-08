@@ -59,7 +59,7 @@ const Job = ({
           </Link>
           <Form
             method="post"
-            action={`../delete-job/${_id}`}
+            action={`../delete-job/${_id}`} //route the same as in App.tsx -> route
           >
             <button
               type="submit"

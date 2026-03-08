@@ -17,6 +17,7 @@ import {
 } from '../App';
 import serverRequest from '../utils/serverRequest.utils';
 import { toast } from 'react-toastify';
+import type { User } from '../types';
 
 // eslint-disable-next-line
 export const loader = async () => {
@@ -31,13 +32,8 @@ export const loader = async () => {
   }
 };
 
-export interface User {
-  name: string;
-  avatar?: string;
-}
-
 interface DashBoardContextInterface {
-  user: User;
+  user: User | undefined;
   showSidebar: boolean;
   isDarkTheme: boolean;
   toggleDarkTheme: () => void;
@@ -46,7 +42,7 @@ interface DashBoardContextInterface {
 }
 
 const initValues: DashBoardContextInterface = {
-  user: { name: '', avatar: '' },
+  user: undefined,
   showSidebar: false,
   isDarkTheme: false,
   toggleDarkTheme: () => {},
