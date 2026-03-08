@@ -40,7 +40,9 @@ const updateJob: RequestHandler = async (req, res) => {
     },
   );
 
-  res.status(StatusCodes.OK).json({ job: updatedJob });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: 'job modified', job: updatedJob });
 };
 
 const deleteJob: RequestHandler = async (req, res) => {
