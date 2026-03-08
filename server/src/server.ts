@@ -13,6 +13,7 @@ import cookieParser from 'cookie-parser';
 // ## IMPORTS - routes
 import jobRouter from './routes/job.router';
 import authRouter from './routes/auth.router';
+import userRouter from './routes/user.router';
 
 //## IMPORTS - middleware
 import errorHandlerMiddleware from './middleware/errorHandler.middleware';
@@ -36,6 +37,11 @@ app.use(
   jobRouter,
 );
 app.use('/api/v1/auth', authRouter);
+app.use(
+  '/api/v1/users',
+  authMiddleware.authenticateUser,
+  userRouter,
+);
 
 /// #### CRITICAL MIDDLEWARES
 app.use('*', notFoundHandlerMiddleware);

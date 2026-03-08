@@ -14,16 +14,16 @@ router
 router
   .route('/:id')
   .get(
-    validatorMiddleware.validateIdParam,
+    validatorMiddleware.validateJobIdParam,
     jobController.getJob,
   )
   .patch(
-    validatorMiddleware.validateIdParam,
+    validatorMiddleware.validateJobIdParam,
     validatorMiddleware.validateJobInput,
     jobController.updateJob,
   )
   .delete(
-    validatorMiddleware.validateIdParam,
+    validatorMiddleware.validateJobIdParam,
     jobController.deleteJob,
   );
 

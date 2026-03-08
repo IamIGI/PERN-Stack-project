@@ -13,12 +13,22 @@ import {
 import {
   BadRequestError,
   NotFoundError,
+  UnauthorizedError,
 } from '../errors/customErrors';
 import generalUtil from '../utils/general.utils';
-import { JobStatus, JobType } from '../utils/constants';
+import {
+  JobStatus,
+  JobType,
+  UserRole,
+} from '../utils/constants';
 import mongoose from 'mongoose';
 import jobModel from '../models/job.model';
 import userModel from '../models/user.model';
+
+const keyErrorMessageWords = {
+  noJob: 'no job',
+  notAuthorized: 'not authorized',
+};
 
 //#### INTER
 const withValidationErrors = (
@@ -33,8 +43,22 @@ const withValidationErrors = (
           .array()
           .map((error) => error.msg);
 
-        if (errorMessages[0].startsWith('no job')) {
+        if (
+          errorMessages[0].startsWith(
+            keyErrorMessageWords.noJob,
+          )
+        ) {
           throw new NotFoundError(errorMessages);
+        }
+
+        if (
+          errorMessages[0].startsWith(
+            keyErrorMessageWords.notAuthorized,
+          )
+        ) {
+          throw new UnauthorizedError(
+            'not authorized to access this route',
+          );
         }
 
         throw new BadRequestError(errorMessages);
@@ -53,6 +77,24 @@ const requiredInput = (name: string) => {
     .withMessage(`${displayName} is required`);
 };
 
+const requiredUniqueEmail = () =>
+  requiredInput('email')
+    .isEmail()
+    .withMessage('invalid email format')
+    .custom(async (email) => {
+      const user = await userModel.findOne({ email });
+      if (user) {
+        throw new Error('email already exists');
+      }
+    });
+
+const requiredPassword = () =>
+  requiredInput('password')
+    .isLength({ min: 5 })
+    .withMessage(
+      'password must be at least 8 characters long',
+    );
+
 //#### EXPORT
 const validateJobInput = withValidationErrors([
   requiredInput('company'),
@@ -66,53 +108,63 @@ const validateJobInput = withValidationErrors([
     .withMessage('invalid job type'),
 ]);
 
-const validateIdParam = withValidationErrors([
-  param('id').custom(async (value: any) => {
+const validateJobIdParam = withValidationErrors([
+  param('id').custom(async (value: string, { req }) => {
     const isValidID =
       mongoose.Types.ObjectId.isValid(value);
     if (!isValidID)
       throw new BadRequestError('invalid MongoDB id');
+
     //Downside of this: id is checked there and in controller
     const job = await jobModel.findById(value);
     if (!job)
-      throw new NotFoundError(`no job with id: ${value}`);
+      throw new NotFoundError(
+        `${keyErrorMessageWords.noJob} with id: ${value}`,
+      );
+
+    const isAdmin = req.user.role === UserRole.ADMIN;
+    const isOwner =
+      req.user.userId === job.createdBy.toString();
+    if (!isAdmin && !isOwner)
+      throw new UnauthorizedError(
+        `${keyErrorMessageWords.notAuthorized} to access this route`,
+      );
   }),
 ]);
 
 const validateRegisterInput = withValidationErrors([
   requiredInput('name'),
-  requiredInput('email')
-    .isEmail()
-    .withMessage('invalid email format')
-    .custom(async (email) => {
-      const user = await userModel.findOne({ email });
-      if (user) {
-        throw new BadRequestError('email already exists');
-      }
-    }),
-  requiredInput('password')
-    .isLength({ min: 8 })
-    .withMessage(
-      'password must be at least 8 characters long',
-    ),
+  requiredUniqueEmail(),
+  requiredPassword(),
   requiredInput('location'),
   requiredInput('lastName'),
 ]);
 
-export const validateLoginInput = withValidationErrors([
+const validateLoginInput = withValidationErrors([
   requiredInput('email')
     .isEmail()
     .withMessage('invalid email format'),
-  requiredInput('password')
-    .isLength({ min: 8 })
-    .withMessage(
-      'password must be at least 8 characters long',
-    ),
+  requiredPassword(),
+]);
+
+const validateUpdateUserInput = withValidationErrors([
+  requiredInput('name'),
+  requiredInput('lastName'),
+  requiredInput('location'),
+  body('email')
+    .not()
+    .exists()
+    .withMessage('Cannot change email'),
+  body('role')
+    .not()
+    .exists()
+    .withMessage('Cannot change role'),
 ]);
 
 export default {
   validateJobInput,
-  validateIdParam,
+  validateJobIdParam,
   validateRegisterInput,
   validateLoginInput,
+  validateUpdateUserInput,
 };

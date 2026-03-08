@@ -14,13 +14,7 @@ const register: RequestHandler = async (req, res) => {
 
   const user = await userModel.create(req.body);
 
-  res.status(StatusCodes.CREATED).json({
-    name: user.name,
-    email: user.email,
-    lastName: user.lastName,
-    location: user.location,
-    role: user.role,
-  });
+  res.status(StatusCodes.CREATED).json({ user });
 };
 const login: RequestHandler = async (req, res) => {
   // check if user exists
@@ -34,7 +28,7 @@ const login: RequestHandler = async (req, res) => {
     user &&
     (await passwordUtils.comparePassword(
       req.body.password,
-      user.password,
+      user.password!,
     ));
   if (!isValidUser)
     throw new UnauthenticatedError('invalid credentials');
@@ -54,7 +48,19 @@ const login: RequestHandler = async (req, res) => {
     .json({ msg: 'User logged in' });
 };
 
+const logout: RequestHandler = (req, res) => {
+  // res.clearCookie('token'); //Alternative
+  res.cookie('token', 'logout', {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: 'user logged out!' });
+};
+
 export default {
   register,
   login,
+  logout,
 };
