@@ -1,4 +1,9 @@
-import { Outlet } from 'react-router-dom';
+import {
+  Outlet,
+  redirect,
+  useLoaderData,
+  useNavigate,
+} from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Dashboard';
 import {
   BigSidebar,
@@ -10,6 +15,21 @@ import {
   checkDefaultTheme,
   darkThemeLocalStorageName,
 } from '../App';
+import serverRequest from '../utils/serverRequest.utils';
+import { toast } from 'react-toastify';
+
+// eslint-disable-next-line
+export const loader = async () => {
+  try {
+    const { data } = await serverRequest.get(
+      '/users/current-user',
+    );
+    return data;
+    // eslint-disable-next-line
+  } catch (_) {
+    return redirect('/');
+  }
+};
 
 export interface User {
   name: string;
@@ -38,8 +58,8 @@ const DashboardContext =
   createContext<DashBoardContextInterface>(initValues);
 
 const DashboardLayout = () => {
-  //temp
-  const user = { name: 'john' };
+  const { user } = useLoaderData();
+  const navigate = useNavigate();
 
   const [showSidebar, setShowSidebar] =
     useState<boolean>(false);
@@ -64,7 +84,9 @@ const DashboardLayout = () => {
     setShowSidebar(!showSidebar);
   };
   const logoutUser = async () => {
-    console.log('logout user');
+    navigate('/');
+    await serverRequest.get('/auth/logout');
+    toast.success('Logging out...');
   };
 
   return (
@@ -85,7 +107,7 @@ const DashboardLayout = () => {
           <div>
             <Navbar />
             <div className="dashboard-page">
-              <Outlet />
+              <Outlet context={{ user }} />
             </div>
           </div>
         </main>
