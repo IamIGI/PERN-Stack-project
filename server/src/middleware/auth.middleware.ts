@@ -18,9 +18,7 @@ const authenticateUser: RequestHandler = async (
   try {
     const { userId, role } = tokenUtils.verifyJWT(token);
     req.user = { userId, role };
-    console.log('Triggered: authenticateUser', {
-      user: { ...req.user },
-    });
+
     next();
   } catch (error) {
     throw new UnauthenticatedError(
@@ -33,13 +31,6 @@ const authorizePermissions = (
   authorizedRoles: UserRole[],
 ): RequestHandler => {
   return (req, res, next) => {
-    console.log({
-      user: req.user,
-      authorizedRoles,
-      result: authorizedRoles.includes(
-        req.user!.role as UserRole,
-      ),
-    });
     if (
       req.user &&
       !authorizedRoles.includes(req.user.role as UserRole)
