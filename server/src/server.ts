@@ -11,6 +11,7 @@ import cookieParser from 'cookie-parser';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
 
 // ## IMPORTS - routes
 import jobRouter from './routes/job.router';
@@ -35,6 +36,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(
   express.static(path.resolve(__dirname, './public')),
 );
+//Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 // ## ROUTES
 app.use(

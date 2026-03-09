@@ -17,7 +17,8 @@ export const action = async ({
   const formData = await request.formData();
 
   const file = formData.get('avatar') as File | null;
-  if (file instanceof File && file.size > 500000) {
+  console.log('Debug: ', { size: file!.size });
+  if (file instanceof File && file.size > 5000000) {
     toast.error('Image size too large');
     return null;
   }
@@ -37,7 +38,7 @@ export const action = async ({
 const Profile = () => {
   const { user } =
     useOutletContext<DashboardContextOutlet>();
-  const { name, lastName, email, location } = user;
+  const { name, lastName, location } = user;
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
   return (
@@ -72,11 +73,6 @@ const Profile = () => {
             labelText="last name"
             name="lastName"
             defaultValue={lastName}
-          />
-          <FormRow
-            type="email"
-            name="email"
-            defaultValue={email}
           />
           <FormRow
             type="text"

@@ -2,6 +2,11 @@ import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
 
+//###Regarding cloudinary usage:
+// In production systems, many teams skip disk storage completely and
+// upload directly to Cloudinary using streams.
+// That way you don't need multer.diskStorage or fs.unlink at all.
+
 const uploadDir = path.join('public', 'uploads');
 
 if (!fs.existsSync(uploadDir)) {
