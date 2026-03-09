@@ -32,6 +32,10 @@ export const loader = async () => {
   }
 };
 
+export interface DashboardContextOutlet {
+  user: User;
+}
+
 interface DashBoardContextInterface {
   user: User | undefined;
   showSidebar: boolean;

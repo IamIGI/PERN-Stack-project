@@ -1,7 +1,6 @@
 import {
   Form,
   redirect,
-  useNavigation,
   useOutletContext,
   type ActionFunctionArgs,
 } from 'react-router-dom';
@@ -12,6 +11,7 @@ import FormRowSelect from '../components/FormRowSelect';
 import serverRequest from '../utils/serverRequest.utils';
 import { toast } from 'react-toastify';
 import type { AxiosError } from 'axios';
+import SubmitBtn from '../components/SubmitBtn';
 
 // eslint-disable-next-line
 export const action = async ({
@@ -33,8 +33,7 @@ export const action = async ({
 
 const AddJob = () => {
   const { user } = useOutletContext() as { user: User };
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
+
   return (
     <Wrapper>
       <Form method="post" className="form">
@@ -61,13 +60,7 @@ const AddJob = () => {
             list={Object.values(JobType)}
           />
 
-          <button
-            type="submit"
-            className="btn btn-block form-btn "
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'submitting...' : 'submit'}
-          </button>
+          <SubmitBtn />
         </div>
       </Form>
     </Wrapper>

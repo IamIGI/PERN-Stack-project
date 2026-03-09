@@ -6,6 +6,8 @@ export interface User {
   lastName: string;
   location: string;
   role: UserRoleType;
+  avatar: string;
+  avatarPublicId: string;
 }
 
 export interface Job {

@@ -1,7 +1,9 @@
 import { StatusCodes } from 'http-status-codes';
 import { RequestHandler } from 'express';
-import userModel from '../models/user.model';
+import userModel, { IUser } from '../models/user.model';
 import jobModel from '../models/job.model';
+import { v2 as cloudinary } from 'cloudinary';
+import { promises as fs } from 'fs';
 
 const getCurrentUser: RequestHandler = async (req, res) => {
   console.log({ userToken: req.user });
@@ -22,12 +24,28 @@ const getApplicationStats: RequestHandler = async (
 };
 
 const updateUser: RequestHandler = async (req, res) => {
-  const updatedUser = await userModel.findOneAndUpdate(
+  const newUser = { ...req.body } as IUser;
+  if (req.file) {
+    const response = await cloudinary.uploader.upload(
+      req.file.path,
+    );
+    await fs.unlink(req.file.path);
+
+    newUser.avatar = response.secure_url;
+    newUser.avatarPublicId = response.public_id;
+  }
+
+  const oldUserData = await userModel.findOneAndUpdate(
     { _id: req.user?.userId },
-    req.body,
-    { new: true },
+    newUser,
   );
-  res.status(StatusCodes.OK).json({ updatedUser });
+
+  if (req.file && oldUserData?.avatarPublicId) {
+    await cloudinary.uploader.destroy(
+      oldUserData.avatarPublicId,
+    );
+  }
+  res.status(StatusCodes.OK).json({ oldUserData });
 };
 
 export default {
