@@ -8,6 +8,8 @@ export interface IUser extends Document {
   lastName: string;
   location: string;
   role: UserRole;
+  avatar: string;
+  avatarPublicId: string;
 }
 
 const UserSchema = new mongoose.Schema<IUser>({
@@ -27,6 +29,8 @@ const UserSchema = new mongoose.Schema<IUser>({
     enum: Object.values(UserRole),
     default: UserRole.USER,
   },
+  avatar: String,
+  avatarPublicId: String,
 });
 
 //arrow function won't work, use function with 'this' keyword
