@@ -22,6 +22,7 @@ const getApplicationStats: RequestHandler = async (
 };
 
 const updateUser: RequestHandler = async (req, res) => {
+  console.log('Debug: ', req.file);
   const updatedUser = await userModel.findOneAndUpdate(
     { _id: req.user?.userId },
     req.body,
