@@ -5,11 +5,7 @@ import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
 } from 'react-router-dom';
-import {
-  Form,
-  useNavigation,
-  redirect,
-} from 'react-router-dom';
+import { Form, redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import serverRequest from '../utils/serverRequest.utils';
 import {
@@ -19,6 +15,7 @@ import {
 } from '../types';
 import type { AxiosError } from 'axios';
 import FormRowSelect from '../components/FormRowSelect';
+import SubmitBtn from '../components/SubmitBtn';
 
 // eslint-disable-next-line
 export const loader = async ({
@@ -60,9 +57,6 @@ export const action = async ({
 const EditJob = () => {
   const { job } = useLoaderData() as JobResponse;
 
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
-
   return (
     <Wrapper>
       <Form method="post" className="form">
@@ -99,13 +93,7 @@ const EditJob = () => {
             defaultValue={job.jobType as unknown as string}
             list={Object.values(JobType)}
           />
-          <button
-            type="submit"
-            className="btn btn-block form-btn "
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'submitting...' : 'submit'}
-          </button>
+          <SubmitBtn />
         </div>
       </Form>
     </Wrapper>

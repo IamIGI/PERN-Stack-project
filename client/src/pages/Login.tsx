@@ -4,12 +4,13 @@ import {
   Form,
   Link,
   redirect,
-  useNavigation,
+  useNavigate,
   type ActionFunctionArgs,
 } from 'react-router-dom';
 import serverRequest from '../utils/serverRequest.utils';
 import { toast } from 'react-toastify';
 import type { AxiosError } from 'axios';
+import SubmitBtn from '../components/SubmitBtn';
 
 // eslint-disable-next-line
 export const action = async ({
@@ -37,8 +38,25 @@ export const action = async ({
 
 const Login = () => {
   // const errors = useActionData(); //Option to access the form submit data
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
+
+  const navigate = useNavigate();
+  const loginDemoUser = async () => {
+    const data = {
+      email: 'test@test.com',
+      password: 'secret123',
+    };
+    try {
+      await serverRequest.post('/auth/login', data);
+      toast.success('take a test drive');
+      navigate('/dashboard');
+    } catch (error) {
+      const axiosError = error as AxiosError<{
+        msg: string;
+      }>;
+      toast.error(axiosError?.response?.data?.msg);
+    }
+  };
+
   return (
     <Wrapper>
       <Form className="form" method="post">
@@ -55,14 +73,12 @@ const Login = () => {
           name="password"
           defaultValue="Admin123!"
         />
+        <SubmitBtn />
         <button
-          type="submit"
+          type="button"
           className="btn btn-block"
-          disabled={isSubmitting}
+          onClick={loginDemoUser}
         >
-          {isSubmitting ? 'submitting...' : 'submit'}
-        </button>
-        <button type="button" className="btn btn-block">
           explore the app
         </button>
         <p>

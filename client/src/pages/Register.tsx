@@ -4,13 +4,13 @@ import FormRow from '../components/FormRow';
 import {
   Form,
   redirect,
-  useNavigation,
   Link,
   type ActionFunctionArgs,
 } from 'react-router-dom';
 import serverRequest from '../utils/serverRequest.utils';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
+import SubmitBtn from '../components/SubmitBtn';
 
 //Fast refresh issue
 // src
@@ -39,8 +39,6 @@ export const action = async ({
 };
 
 const Register = () => {
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
   return (
     <Wrapper>
       <Form className="form" method="post">
@@ -54,16 +52,9 @@ const Register = () => {
         />
         <FormRow type="text" name="location" />
         <FormRow type="email" name="email" />
-
         <FormRow type="password" name="password" />
 
-        <button
-          type="submit"
-          className="btn btn-block"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? 'submitting...' : 'submit'}
-        </button>
+        <SubmitBtn />
         <p>
           Already a member?
           <Link to="/login" className="member-btn">

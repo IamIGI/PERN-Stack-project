@@ -4,11 +4,12 @@ import {
   useOutletContext,
   type ActionFunctionArgs,
 } from 'react-router-dom';
-import { useNavigation, Form } from 'react-router-dom';
+import { Form } from 'react-router-dom';
 import type { DashboardContextOutlet } from './DashboardLayout';
 import { toast } from 'react-toastify';
 import serverRequest from '../utils/serverRequest.utils';
 import type { AxiosError } from 'axios';
+import SubmitBtn from '../components/SubmitBtn';
 
 // eslint-disable-next-line
 export const action = async ({
@@ -39,8 +40,7 @@ const Profile = () => {
   const { user } =
     useOutletContext<DashboardContextOutlet>();
   const { name, lastName, location } = user;
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
+
   return (
     <Wrapper>
       <Form
@@ -79,15 +79,7 @@ const Profile = () => {
             name="location"
             defaultValue={location}
           />
-          <button
-            className="btn btn-block form-btn"
-            type="submit"
-            disabled={isSubmitting}
-          >
-            {isSubmitting
-              ? 'submitting...'
-              : 'save changes'}
-          </button>
+          <SubmitBtn />
         </div>
       </Form>
     </Wrapper>
