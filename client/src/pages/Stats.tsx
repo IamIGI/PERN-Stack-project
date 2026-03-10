@@ -4,6 +4,7 @@ import StatsContainer from '../components/StatsContainer';
 import type { JobStatsResponse } from '../types';
 import serverRequest from '../utils/serverRequest.utils';
 
+// eslint-disable-next-line
 export const loader = async () => {
   try {
     const response =
