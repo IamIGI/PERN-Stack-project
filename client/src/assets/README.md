@@ -64,7 +64,11 @@ export default App;
 
 ```html
 <head>
-  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="/favicon.ico"
+  />
   <title>Jobify</title>
 </head>
 ```
@@ -102,7 +106,10 @@ npm i react-router-dom@6.10.0
 App.jsx
 
 ```jsx
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
@@ -222,7 +229,7 @@ const Register = () => {
   return (
     <div>
       <h1>Register</h1>
-      <Link to='/login'>Login Page</Link>
+      <Link to="/login">Login Page</Link>
     </div>
   );
 };
@@ -238,7 +245,7 @@ const Login = () => {
   return (
     <div>
       <h1>Login</h1>
-      <Link to='/register'>Register Page</Link>
+      <Link to="/register">Register Page</Link>
     </div>
   );
 };
@@ -338,7 +345,7 @@ const Error = () => {
   return (
     <div>
       <h1>Error Page !!!</h1>
-      <Link to='/dashboard'>back home</Link>
+      <Link to="/dashboard">back home</Link>
     </div>
   );
 };
@@ -418,7 +425,7 @@ const Landing = () => {
   return (
     <Wrapper>
       <h1>Landing</h1>
-      <div className='content'>some content</div>
+      <div className="content">some content</div>
     </Wrapper>
   );
 };
@@ -447,28 +454,36 @@ const Landing = () => {
   return (
     <StyledWrapper>
       <nav>
-        <img src={logo} alt='jobify' className='logo' />
+        <img src={logo} alt="jobify" className="logo" />
       </nav>
-      <div className='container page'>
+      <div className="container page">
         {/* info */}
-        <div className='info'>
+        <div className="info">
           <h1>
             job <span>tracking</span> app
           </h1>
           <p>
-            I'm baby wayfarers hoodie next level taiyaki brooklyn cliche blue
-            bottle single-origin coffee chia. Aesthetic post-ironic venmo,
-            quinoa lo-fi tote bag adaptogen everyday carry meggings +1 brunch
-            narwhal.
+            I'm baby wayfarers hoodie next level taiyaki
+            brooklyn cliche blue bottle single-origin coffee
+            chia. Aesthetic post-ironic venmo, quinoa lo-fi
+            tote bag adaptogen everyday carry meggings +1
+            brunch narwhal.
           </p>
-          <Link to='/register' className='btn register-link'>
+          <Link
+            to="/register"
+            className="btn register-link"
+          >
             Register
           </Link>
-          <Link to='/login' className='btn'>
+          <Link to="/login" className="btn">
             Login / Demo User
           </Link>
         </div>
-        <img src={main} alt='job hunt' className='img main-img' />
+        <img
+          src={main}
+          alt="job hunt"
+          className="img main-img"
+        />
       </div>
     </StyledWrapper>
   );
@@ -548,7 +563,7 @@ import Wrapper from '../assets/wrappers/LandingPage';
 import logo from '../assets/images/logo.svg';
 
 const Logo = () => {
-  return <img src={logo} alt='jobify' className='logo' />;
+  return <img src={logo} alt="jobify" className="logo" />;
 };
 
 export default Logo;
@@ -575,10 +590,13 @@ const Error = () => {
     return (
       <Wrapper>
         <div>
-          <img src={img} alt='not found' />
+          <img src={img} alt="not found" />
           <h3>Ohh! page not found</h3>
-          <p>We can't seem to find the page you're looking for</p>
-          <Link to='/dashboard'>back home</Link>
+          <p>
+            We can't seem to find the page you're looking
+            for
+          </p>
+          <Link to="/dashboard">back home</Link>
         </div>
       </Wrapper>
     );
@@ -645,29 +663,29 @@ import { Link } from 'react-router-dom';
 const Register = () => {
   return (
     <Wrapper>
-      <form className='form'>
+      <form className="form">
         <Logo />
         <h4>Register</h4>
-        <div className='form-row'>
-          <label htmlFor='name' className='form-label'>
+        <div className="form-row">
+          <label htmlFor="name" className="form-label">
             name
           </label>
           <input
-            type='text'
-            id='name'
-            name='name'
-            className='form-input'
-            defaultValue='john'
+            type="text"
+            id="name"
+            name="name"
+            className="form-input"
+            defaultValue="john"
             required
           />
         </div>
 
-        <button type='submit' className='btn btn-block'>
+        <button type="submit" className="btn btn-block">
           submit
         </button>
         <p>
           Already a member?
-          <Link to='/login' className='member-btn'>
+          <Link to="/login" className="member-btn">
             Login
           </Link>
         </p>
@@ -693,17 +711,22 @@ In React, the defaultValue prop is used to set the initial or default value of a
 FormRow.jsx
 
 ```jsx
-const FormRow = ({ type, name, labelText, defaultValue = '' }) => {
+const FormRow = ({
+  type,
+  name,
+  labelText,
+  defaultValue = '',
+}) => {
   return (
-    <div className='form-row'>
-      <label htmlFor={name} className='form-label'>
+    <div className="form-row">
+      <label htmlFor={name} className="form-label">
         {labelText || name}
       </label>
       <input
         type={type}
         id={name}
         name={name}
-        className='form-input'
+        className="form-input"
         defaultValue={defaultValue}
         required
       />
@@ -724,22 +747,26 @@ import { Link } from 'react-router-dom';
 const Register = () => {
   return (
     <Wrapper>
-      <form className='form'>
+      <form className="form">
         <Logo />
         <h4>Register</h4>
-        <FormRow type='text' name='name' />
-        <FormRow type='text' name='lastName' labelText='last name' />
-        <FormRow type='text' name='location' />
-        <FormRow type='email' name='email' />
+        <FormRow type="text" name="name" />
+        <FormRow
+          type="text"
+          name="lastName"
+          labelText="last name"
+        />
+        <FormRow type="text" name="location" />
+        <FormRow type="email" name="email" />
 
-        <FormRow type='password' name='password' />
+        <FormRow type="password" name="password" />
 
-        <button type='submit' className='btn btn-block'>
+        <button type="submit" className="btn btn-block">
           submit
         </button>
         <p>
           Already a member?
-          <Link to='/login' className='member-btn'>
+          <Link to="/login" className="member-btn">
             Login
           </Link>
         </p>
@@ -763,20 +790,28 @@ import { Link } from 'react-router-dom';
 const Login = () => {
   return (
     <Wrapper>
-      <form className='form'>
+      <form className="form">
         <Logo />
         <h4>Login</h4>
-        <FormRow type='email' name='email' defaultValue='john@gmail.com' />
-        <FormRow type='password' name='password' defaultValue='secret123' />
-        <button type='submit' className='btn btn-block'>
+        <FormRow
+          type="email"
+          name="email"
+          defaultValue="john@gmail.com"
+        />
+        <FormRow
+          type="password"
+          name="password"
+          defaultValue="secret123"
+        />
+        <button type="submit" className="btn btn-block">
           submit
         </button>
-        <button type='button' className='btn btn-block'>
+        <button type="button" className="btn btn-block">
           explore the app
         </button>
         <p>
           Not a member yet?
-          <Link to='/register' className='member-btn'>
+          <Link to="/register" className="member-btn">
             Register
           </Link>
         </p>
@@ -888,17 +923,21 @@ DashboardLayout.jsx
 import { Outlet } from 'react-router-dom';
 
 import Wrapper from '../assets/wrappers/Dashboard';
-import { Navbar, BigSidebar, SmallSidebar } from '../components';
+import {
+  Navbar,
+  BigSidebar,
+  SmallSidebar,
+} from '../components';
 
 const Dashboard = () => {
   return (
     <Wrapper>
-      <main className='dashboard'>
+      <main className="dashboard">
         <SmallSidebar />
         <BigSidebar />
         <div>
           <Navbar />
-          <div className='dashboard-page'>
+          <div className="dashboard-page">
             <Outlet />
           </div>
         </div>
@@ -945,7 +984,11 @@ export default Wrapper;
 import { Outlet } from 'react-router-dom';
 
 import Wrapper from '../assets/wrappers/Dashboard';
-import { Navbar, BigSidebar, SmallSidebar } from '../components';
+import {
+  Navbar,
+  BigSidebar,
+  SmallSidebar,
+} from '../components';
 
 import { useState, createContext, useContext } from 'react';
 const DashboardContext = createContext();
@@ -979,12 +1022,12 @@ const Dashboard = () => {
       }}
     >
       <Wrapper>
-        <main className='dashboard'>
+        <main className="dashboard">
           <SmallSidebar />
           <BigSidebar />
           <div>
             <Navbar />
-            <div className='dashboard-page'>
+            <div className="dashboard-page">
               <Outlet />
             </div>
           </div>
@@ -994,7 +1037,8 @@ const Dashboard = () => {
   );
 };
 
-export const useDashboardContext = () => useContext(DashboardContext);
+export const useDashboardContext = () =>
+  useContext(DashboardContext);
 
 export default Dashboard;
 ```
@@ -1035,15 +1079,19 @@ const Navbar = () => {
   const { toggleSidebar } = useDashboardContext();
   return (
     <Wrapper>
-      <div className='nav-center'>
-        <button type='button' className='toggle-btn' onClick={toggleSidebar}>
+      <div className="nav-center">
+        <button
+          type="button"
+          className="toggle-btn"
+          onClick={toggleSidebar}
+        >
           <FaAlignLeft />
         </button>
         <div>
           <Logo />
-          <h4 className='logo-text'>dashboard</h4>
+          <h4 className="logo-text">dashboard</h4>
         </div>
-        <div className='btn-container'>toggle/logout</div>
+        <div className="btn-container">toggle/logout</div>
       </div>
     </Wrapper>
   );
@@ -1127,10 +1175,22 @@ import { MdAdminPanelSettings } from 'react-icons/md';
 
 const links = [
   { text: 'add job', path: '.', icon: <FaWpforms /> },
-  { text: 'all jobs', path: 'all-jobs', icon: <MdQueryStats /> },
-  { text: 'stats', path: 'stats', icon: <IoBarChartSharp /> },
+  {
+    text: 'all jobs',
+    path: 'all-jobs',
+    icon: <MdQueryStats />,
+  },
+  {
+    text: 'stats',
+    path: 'stats',
+    icon: <IoBarChartSharp />,
+  },
   { text: 'profile', path: 'profile', icon: <ImProfile /> },
-  { text: 'admin', path: 'admin', icon: <MdAdminPanelSettings /> },
+  {
+    text: 'admin',
+    path: 'admin',
+    icon: <MdAdminPanelSettings />,
+  },
 ];
 
 export default links;
@@ -1152,22 +1212,29 @@ import links from '../utils/links';
 import { useDashboardContext } from '../pages/DashboardLayout';
 
 const SmallSidebar = () => {
-  const { showSidebar, toggleSidebar } = useDashboardContext();
+  const { showSidebar, toggleSidebar } =
+    useDashboardContext();
   return (
     <Wrapper>
       <div
         className={
-          showSidebar ? 'sidebar-container show-sidebar' : 'sidebar-container'
+          showSidebar
+            ? 'sidebar-container show-sidebar'
+            : 'sidebar-container'
         }
       >
-        <div className='content'>
-          <button type='button' className='close-btn' onClick={toggleSidebar}>
+        <div className="content">
+          <button
+            type="button"
+            className="close-btn"
+            onClick={toggleSidebar}
+          >
             <FaTimes />
           </button>
           <header>
             <Logo />
           </header>
-          <div className='nav-links'>
+          <div className="nav-links">
             {links.map((link) => {
               const { text, path, icon } = link;
 
@@ -1175,12 +1242,12 @@ const SmallSidebar = () => {
                 <NavLink
                   to={path}
                   key={text}
-                  className='nav-link'
+                  className="nav-link"
                   onClick={toggleSidebar}
                   // will discuss in a second
                   end
                 >
-                  <span className='icon'>{icon}</span>
+                  <span className="icon">{icon}</span>
                   {text}
                 </NavLink>
               );
@@ -1289,7 +1356,7 @@ const NavLinks = () => {
   const { user, toggleSidebar } = useDashboardContext();
 
   return (
-    <div className='nav-links'>
+    <div className="nav-links">
       {links.map((link) => {
         const { text, path, icon } = link;
         // admin user
@@ -1298,10 +1365,10 @@ const NavLinks = () => {
             to={path}
             key={text}
             onClick={toggleSidebar}
-            className='nav-link'
+            className="nav-link"
             end
           >
-            <span className='icon'>{icon}</span>
+            <span className="icon">{icon}</span>
             {text}
           </NavLink>
         );
@@ -1327,10 +1394,12 @@ const BigSidebar = () => {
     <Wrapper>
       <div
         className={
-          showSidebar ? 'sidebar-container ' : 'sidebar-container show-sidebar'
+          showSidebar
+            ? 'sidebar-container '
+            : 'sidebar-container show-sidebar'
         }
       >
-        <div className='content'>
+        <div className="content">
           <header>
             <Logo />
           </header>
@@ -1349,7 +1418,7 @@ const NavLinks = ({ isBigSidebar }) => {
   const { user, toggleSidebar } = useDashboardContext();
 
   return (
-    <div className='nav-links'>
+    <div className="nav-links">
       {links.map((link) => {
         const { text, path, icon } = link;
         // admin user
@@ -1358,10 +1427,10 @@ const NavLinks = ({ isBigSidebar }) => {
             to={path}
             key={text}
             onClick={isBigSidebar ? null : toggleSidebar}
-            className='nav-link'
+            className="nav-link"
             end
           >
-            <span className='icon'>{icon}</span>
+            <span className="icon">{icon}</span>
             {text}
           </NavLink>
         );
@@ -1457,12 +1526,16 @@ const LogoutContainer = () => {
   return (
     <Wrapper>
       <button
-        type='button'
-        className='btn logout-btn'
+        type="button"
+        className="btn logout-btn"
         onClick={() => setShowLogout(!showLogout)}
       >
         {user.avatar ? (
-          <img src={user.avatar} alt='avatar' className='img' />
+          <img
+            src={user.avatar}
+            alt="avatar"
+            className="img"
+          />
         ) : (
           <FaUserCircle />
         )}
@@ -1470,8 +1543,16 @@ const LogoutContainer = () => {
         {user?.name}
         <FaCaretDown />
       </button>
-      <div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>
-        <button type='button' className='dropdown-btn' onClick={logoutUser}>
+      <div
+        className={
+          showLogout ? 'dropdown show-dropdown' : 'dropdown'
+        }
+      >
+        <button
+          type="button"
+          className="dropdown-btn"
+          onClick={logoutUser}
+        >
           logout
         </button>
       </div>
@@ -1538,18 +1619,22 @@ export default Wrapper;
 components/ThemeToggle.jsx
 
 ```jsx
-import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
+import {
+  BsFillSunFill,
+  BsFillMoonFill,
+} from 'react-icons/bs';
 import Wrapper from '../assets/wrappers/ThemeToggle';
 import { useDashboardContext } from '../pages/DashboardLayout';
 
 const ThemeToggle = () => {
-  const { isDarkTheme, toggleDarkTheme } = useDashboardContext();
+  const { isDarkTheme, toggleDarkTheme } =
+    useDashboardContext();
   return (
     <Wrapper onClick={toggleDarkTheme}>
       {isDarkTheme ? (
-        <BsFillSunFill className='toggle-icon' />
+        <BsFillSunFill className="toggle-icon" />
       ) : (
-        <BsFillMoonFill className='toggle-icon' />
+        <BsFillMoonFill className="toggle-icon" />
       )}
     </Wrapper>
   );
@@ -1561,7 +1646,7 @@ export default ThemeToggle;
 Navbar.jsx
 
 ```jsx
-<div className='btn-container'>
+<div className="btn-container">
   <ThemeToggle />
 </div>
 ```
@@ -1598,7 +1683,10 @@ DashboardLayout.jsx
 const toggleDarkTheme = () => {
   const newDarkTheme = !isDarkTheme;
   setIsDarkTheme(newDarkTheme);
-  document.body.classList.toggle('dark-theme', newDarkTheme);
+  document.body.classList.toggle(
+    'dark-theme',
+    newDarkTheme,
+  );
   localStorage.setItem('darkTheme', newDarkTheme);
 };
 ```
@@ -1627,7 +1715,9 @@ DashboardLayout.jsx
 
 ```jsx
 const Dashboard = ({ isDarkThemeEnabled }) => {
-  const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
+  const [isDarkTheme, setIsDarkTheme] = useState(
+    isDarkThemeEnabled,
+  );
 };
 ```
 
@@ -1653,8 +1743,12 @@ index.css
 .dark-theme {
   --text-color: var(--dark-mode-text-color);
   --background-color: var(--dark-mode-bg-color);
-  --text-secondary-color: var(--dark-mode-text-secondary-color);
-  --background-secondary-color: var(--dark-mode-bg-secondary-color);
+  --text-secondary-color: var(
+    --dark-mode-text-secondary-color
+  );
+  --background-secondary-color: var(
+    --dark-mode-bg-secondary-color
+  );
 }
 
 body {
@@ -1873,7 +1967,7 @@ app.listen(port, () => {
 ```js
 try {
   const response = await fetch(
-    'https://www.course-api.com/react-useReducer-cart-project'
+    'https://www.course-api.com/react-useReducer-cart-project',
   );
   const cartData = await response.json();
   console.log(cartData);
@@ -1929,7 +2023,9 @@ app.get('/api/v1/jobs', (req, res) => {
 app.post('/api/v1/jobs', (req, res) => {
   const { company, position } = req.body;
   if (!company || !position) {
-    return res.status(400).json({ msg: 'please provide company and position' });
+    return res
+      .status(400)
+      .json({ msg: 'please provide company and position' });
   }
   const id = nanoid(10);
   // console.log(id);
@@ -1944,7 +2040,9 @@ app.get('/api/v1/jobs/:id', (req, res) => {
   const { id } = req.params;
   const job = jobs.find((job) => job.id === id);
   if (!job) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
   res.status(200).json({ job });
 });
@@ -1954,12 +2052,16 @@ app.get('/api/v1/jobs/:id', (req, res) => {
 app.patch('/api/v1/jobs/:id', (req, res) => {
   const { company, position } = req.body;
   if (!company || !position) {
-    return res.status(400).json({ msg: 'please provide company and position' });
+    return res
+      .status(400)
+      .json({ msg: 'please provide company and position' });
   }
   const { id } = req.params;
   const job = jobs.find((job) => job.id === id);
   if (!job) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
 
   job.company = company;
@@ -1973,7 +2075,9 @@ app.delete('/api/v1/jobs/:id', (req, res) => {
   const { id } = req.params;
   const job = jobs.find((job) => job.id === id);
   if (!job) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
   const newJobs = jobs.filter((job) => job.id !== id);
   jobs = newJobs;
@@ -2022,7 +2126,9 @@ app.get('/api/v1/jobs/:id', (req, res) => {
   const job = jobs.find((job) => job.id === id);
   if (!job) {
     throw new Error('no job with that id');
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
   res.status(200).json({ job });
 });
@@ -2038,8 +2144,16 @@ controllers/jobController.js
 import { nanoid } from 'nanoid';
 
 let jobs = [
-  { id: nanoid(), company: 'apple', position: 'front-end developer' },
-  { id: nanoid(), company: 'google', position: 'back-end developer' },
+  {
+    id: nanoid(),
+    company: 'apple',
+    position: 'front-end developer',
+  },
+  {
+    id: nanoid(),
+    company: 'google',
+    position: 'back-end developer',
+  },
 ];
 
 export const getAllJobs = async (req, res) => {
@@ -2050,7 +2164,9 @@ export const createJob = async (req, res) => {
   const { company, position } = req.body;
 
   if (!company || !position) {
-    return res.status(400).json({ msg: 'please provide company and position' });
+    return res
+      .status(400)
+      .json({ msg: 'please provide company and position' });
   }
   const id = nanoid(10);
   const job = { id, company, position };
@@ -2063,7 +2179,9 @@ export const getJob = async (req, res) => {
   const job = jobs.find((job) => job.id === id);
   if (!job) {
     // throw new Error('no job with that id');
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
   res.status(200).json({ job });
 };
@@ -2071,12 +2189,16 @@ export const getJob = async (req, res) => {
 export const updateJob = async (req, res) => {
   const { company, position } = req.body;
   if (!company || !position) {
-    return res.status(400).json({ msg: 'please provide company and position' });
+    return res
+      .status(400)
+      .json({ msg: 'please provide company and position' });
   }
   const { id } = req.params;
   const job = jobs.find((job) => job.id === id);
   if (!job) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
 
   job.company = company;
@@ -2088,7 +2210,9 @@ export const deleteJob = async (req, res) => {
   const { id } = req.params;
   const job = jobs.find((job) => job.id === id);
   if (!job) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
   const newJobs = jobs.filter((job) => job.id !== id);
   jobs = newJobs;
@@ -2115,7 +2239,11 @@ import {
 // router.post('/', createJob);
 
 router.route('/').get(getAllJobs).post(createJob);
-router.route('/:id').get(getJob).patch(updateJob).delete(deleteJob);
+router
+  .route('/:id')
+  .get(getJob)
+  .patch(updateJob)
+  .delete(deleteJob);
 
 export default router;
 ```
@@ -2189,7 +2317,7 @@ const JobSchema = new mongoose.Schema(
       default: 'my city',
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model('Job', JobSchema);
@@ -2272,7 +2400,9 @@ export const getJob = async (req, res) => {
   const { id } = req.params;
   const job = await Job.findById(id);
   if (!job) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
   res.status(200).json({ job });
 };
@@ -2288,7 +2418,9 @@ export const deleteJob = async (req, res) => {
   const removedJob = await Job.findByIdAndDelete(id);
 
   if (!removedJob) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
   res.status(200).json({ job: removedJob });
 };
@@ -2300,12 +2432,18 @@ export const deleteJob = async (req, res) => {
 export const updateJob = async (req, res) => {
   const { id } = req.params;
 
-  const updatedJob = await Job.findByIdAndUpdate(id, req.body, {
-    new: true,
-  });
+  const updatedJob = await Job.findByIdAndUpdate(
+    id,
+    req.body,
+    {
+      new: true,
+    },
+  );
 
   if (!updatedJob) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    return res
+      .status(404)
+      .json({ msg: `no job with id ${id}` });
   }
 
   res.status(200).json({ job: updatedJob });
@@ -2409,8 +2547,10 @@ middleware/errorHandlerMiddleware.js
 import { StatusCodes } from 'http-status-codes';
 const errorHandlerMiddleware = (err, req, res, next) => {
   console.log(err);
-  const statusCode = err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
-  const msg = err.message || 'Something went wrong, try again later';
+  const statusCode =
+    err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+  const msg =
+    err.message || 'Something went wrong, try again later';
 
   res.status(statusCode).json({ msg });
 };
@@ -2489,15 +2629,19 @@ app.post(
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const errorMessages = errors.array().map((error) => error.msg);
-      return res.status(400).json({ errors: errorMessages });
+      const errorMessages = errors
+        .array()
+        .map((error) => error.msg);
+      return res
+        .status(400)
+        .json({ errors: errorMessages });
     }
     next();
   },
   (req, res) => {
     const { name } = req.body;
     res.json({ msg: `hello ${name}` });
-  }
+  },
 );
 ```
 
@@ -2514,7 +2658,9 @@ const withValidationErrors = (validateValues) => {
     (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        const errorMessages = errors.array().map((error) => error.msg);
+        const errorMessages = errors
+          .array()
+          .map((error) => error.msg);
         throw new BadRequestError(errorMessages);
       }
       next();
@@ -2527,7 +2673,9 @@ export const validateTest = withValidationErrors([
     .notEmpty()
     .withMessage('name is required')
     .isLength({ min: 3, max: 50 })
-    .withMessage('name must be between 3 and 50 characters long')
+    .withMessage(
+      'name must be between 3 and 50 characters long',
+    )
     .trim(),
 ]);
 ```
@@ -2583,7 +2731,7 @@ const JobSchema = new mongoose.Schema(
       default: 'my city',
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 ```
 
@@ -2592,23 +2740,37 @@ const JobSchema = new mongoose.Schema(
 validationMiddleware.js
 
 ```js
-import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
+import {
+  JOB_STATUS,
+  JOB_TYPE,
+} from '../utils/constants.js';
 
 export const validateJobInput = withValidationErrors([
-  body('company').notEmpty().withMessage('company is required'),
-  body('position').notEmpty().withMessage('position is required'),
-  body('jobLocation').notEmpty().withMessage('job location is required'),
+  body('company')
+    .notEmpty()
+    .withMessage('company is required'),
+  body('position')
+    .notEmpty()
+    .withMessage('position is required'),
+  body('jobLocation')
+    .notEmpty()
+    .withMessage('job location is required'),
   body('jobStatus')
     .isIn(Object.values(JOB_STATUS))
     .withMessage('invalid status value'),
-  body('jobType').isIn(Object.values(JOB_TYPE)).withMessage('invalid job type'),
+  body('jobType')
+    .isIn(Object.values(JOB_TYPE))
+    .withMessage('invalid job type'),
 ]);
 ```
 
 ```js
 import { validateJobInput } from '../middleware/validationMiddleware.js';
 
-router.route('/').get(getAllJobs).post(validateJobInput, createJob);
+router
+  .route('/')
+  .get(getAllJobs)
+  .post(validateJobInput, createJob);
 router
   .route('/:id')
   .get(getJob)
@@ -2639,7 +2801,9 @@ import { param } from 'express-validator';
 
 export const validateIdParam = withValidationErrors([
   param('id')
-    .custom((value) => mongoose.Types.ObjectId.isValid(value))
+    .custom((value) =>
+      mongoose.Types.ObjectId.isValid(value),
+    )
     .withMessage('invalid MongoDB id'),
 ]);
 ```
@@ -2647,18 +2811,31 @@ export const validateIdParam = withValidationErrors([
 ```js
 export const validateIdParam = withValidationErrors([
   param('id').custom(async (value) => {
-    const isValidId = mongoose.Types.ObjectId.isValid(value);
-    if (!isValidId) throw new BadRequestError('invalid MongoDB id');
+    const isValidId =
+      mongoose.Types.ObjectId.isValid(value);
+    if (!isValidId)
+      throw new BadRequestError('invalid MongoDB id');
     const job = await Job.findById(value);
-    if (!job) throw new NotFoundError(`no job with id : ${value}`);
+    if (!job)
+      throw new NotFoundError(`no job with id : ${value}`);
   }),
 ]);
 ```
 
 ```js
-import { body, param, validationResult } from 'express-validator';
-import { BadRequestError, NotFoundError } from '../errors/customErrors.js';
-import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
+import {
+  body,
+  param,
+  validationResult,
+} from 'express-validator';
+import {
+  BadRequestError,
+  NotFoundError,
+} from '../errors/customErrors.js';
+import {
+  JOB_STATUS,
+  JOB_TYPE,
+} from '../utils/constants.js';
 import mongoose from 'mongoose';
 import Job from '../models/JobModel.js';
 
@@ -2668,7 +2845,9 @@ const withValidationErrors = (validateValues) => {
     (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        const errorMessages = errors.array().map((error) => error.msg);
+        const errorMessages = errors
+          .array()
+          .map((error) => error.msg);
         if (errorMessages[0].startsWith('no job')) {
           throw new NotFoundError(errorMessages);
         }
@@ -2730,7 +2909,10 @@ routers/authRouter.js
 
 ```js
 import { Router } from 'express';
-import { register, login } from '../controllers/authController.js';
+import {
+  register,
+  login,
+} from '../controllers/authController.js';
 const router = Router();
 
 router.post('/register', register);
@@ -2797,9 +2979,15 @@ export const validateRegisterInput = withValidationErrors([
     .notEmpty()
     .withMessage('password is required')
     .isLength({ min: 8 })
-    .withMessage('password must be at least 8 characters long'),
-  body('location').notEmpty().withMessage('location is required'),
-  body('lastName').notEmpty().withMessage('last name is required'),
+    .withMessage(
+      'password must be at least 8 characters long',
+    ),
+  body('location')
+    .notEmpty()
+    .withMessage('location is required'),
+  body('lastName')
+    .notEmpty()
+    .withMessage('last name is required'),
 ]);
 ```
 
@@ -2840,7 +3028,10 @@ import bcrypt from 'bcryptjs';
 const register = async (req, res) => {
   // a random value that is added to the password before hashing
   const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  const hashedPassword = await bcrypt.hash(
+    req.body.password,
+    salt,
+  );
   req.body.password = hashedPassword;
 
   const user = await User.create(req.body);
@@ -2891,11 +3082,15 @@ authController.js
 import { hashPassword } from '../utils/passwordUtils.js';
 
 const register = async (req, res) => {
-  const hashedPassword = await hashPassword(req.body.password);
+  const hashedPassword = await hashPassword(
+    req.body.password,
+  );
   req.body.password = hashedPassword;
 
   const user = await User.create(req.body);
-  res.status(StatusCodes.CREATED).json({ msg: 'user created' });
+  res
+    .status(StatusCodes.CREATED)
+    .json({ msg: 'user created' });
 };
 ```
 
@@ -2919,7 +3114,9 @@ export const validateLoginInput = withValidationErrors([
     .withMessage('email is required')
     .isEmail()
     .withMessage('invalid email format'),
-  body('password').notEmpty().withMessage('password is required'),
+  body('password')
+    .notEmpty()
+    .withMessage('password is required'),
 ]);
 ```
 
@@ -2942,8 +3139,11 @@ const login = async (req, res) => {
   // check if user exists
   // check if password is correct
 
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) throw new UnauthenticatedError('invalid credentials');
+  const user = await User.findOne({
+    email: req.body.email,
+  });
+  if (!user)
+    throw new UnauthenticatedError('invalid credentials');
 
   res.send('login route');
 };
@@ -2954,8 +3154,14 @@ const login = async (req, res) => {
 passwordUtils.js
 
 ```js
-export async function comparePassword(password, hashedPassword) {
-  const isMatch = await bcrypt.compare(password, hashedPassword);
+export async function comparePassword(
+  password,
+  hashedPassword,
+) {
+  const isMatch = await bcrypt.compare(
+    password,
+    hashedPassword,
+  );
   return isMatch;
 }
 ```
@@ -2963,22 +3169,29 @@ export async function comparePassword(password, hashedPassword) {
 authController.js
 
 ```js
-import { hashPassword, comparePassword } from '../utils/passwordUtils.js';
+import {
+  hashPassword,
+  comparePassword,
+} from '../utils/passwordUtils.js';
 
 const login = async (req, res) => {
   // check if user exists
   // check if password is correct
 
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({
+    email: req.body.email,
+  });
 
-  if (!user) throw new UnauthenticatedError('invalid credentials');
+  if (!user)
+    throw new UnauthenticatedError('invalid credentials');
 
   const isPasswordCorrect = await comparePassword(
     req.body.password,
-    user.password
+    user.password,
   );
 
-  if (!isPasswordCorrect) throw new UnauthenticatedError('invalid credentials');
+  if (!isPasswordCorrect)
+    throw new UnauthenticatedError('invalid credentials');
   res.send('login route');
 };
 ```
@@ -2986,8 +3199,10 @@ const login = async (req, res) => {
 Refactor
 
 ```js
-const isValidUser = user && (await comparePassword(password, user.password));
-if (!isValidUser) throw new UnauthenticatedError('invalid credentials');
+const isValidUser =
+  user && (await comparePassword(password, user.password));
+if (!isValidUser)
+  throw new UnauthenticatedError('invalid credentials');
 ```
 
 #### JSON Web Token
@@ -3024,7 +3239,10 @@ authController.js
 ```js
 import { createJWT } from '../utils/tokenUtils.js';
 
-const token = createJWT({ userId: user._id, role: user.role });
+const token = createJWT({
+  userId: user._id,
+  role: user.role,
+});
 console.log(token);
 ```
 
@@ -3062,7 +3280,9 @@ res.cookie('token', token, {
   secure: process.env.NODE_ENV === 'production',
 });
 
-res.status(StatusCodes.CREATED).json({ msg: 'user logged in' });
+res
+  .status(StatusCodes.CREATED)
+  .json({ msg: 'user logged in' });
 ```
 
 ```js
@@ -3156,7 +3376,9 @@ import { UnauthenticatedError } from '../customErrors.js';
 export const authenticateUser = async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) {
-    throw new UnauthenticatedError('authentication invalid');
+    throw new UnauthenticatedError(
+      'authentication invalid',
+    );
   }
   next();
 };
@@ -3182,7 +3404,9 @@ import { verifyJWT } from '../utils/tokenUtils.js';
 export const authenticateUser = async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) {
-    throw new UnauthenticatedError('authentication invalid');
+    throw new UnauthenticatedError(
+      'authentication invalid',
+    );
   }
 
   try {
@@ -3190,7 +3414,9 @@ export const authenticateUser = async (req, res, next) => {
     req.user = { userId, role };
     next();
   } catch (error) {
-    throw new UnauthenticatedError('authentication invalid');
+    throw new UnauthenticatedError(
+      'authentication invalid',
+    );
   }
 };
 ```
@@ -3200,7 +3426,9 @@ jobController.js
 ```js
 export const getAllJobs = async (req, res) => {
   console.log(req.user);
-  const jobs = await Job.find({ createdBy: req.user.userId });
+  const jobs = await Job.find({
+    createdBy: req.user.userId,
+  });
   res.status(StatusCodes.OK).json({ jobs });
 };
 ```
@@ -3250,14 +3478,20 @@ import {
 
 export const validateIdParam = withValidationErrors([
   param('id').custom(async (value, { req }) => {
-    const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
-    if (!isValidMongoId) throw new BadRequestError('invalid MongoDB id');
+    const isValidMongoId =
+      mongoose.Types.ObjectId.isValid(value);
+    if (!isValidMongoId)
+      throw new BadRequestError('invalid MongoDB id');
     const job = await Job.findById(value);
-    if (!job) throw new NotFoundError(`no job with id ${value}`);
+    if (!job)
+      throw new NotFoundError(`no job with id ${value}`);
     const isAdmin = req.user.role === 'admin';
-    const isOwner = req.user.userId === job.createdBy.toString();
+    const isOwner =
+      req.user.userId === job.createdBy.toString();
     if (!isAdmin && !isOwner)
-      throw UnauthorizedError('not authorized to access this route');
+      throw UnauthorizedError(
+        'not authorized to access this route',
+      );
   }),
 ]);
 ```
@@ -3272,7 +3506,9 @@ const logout = (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now()),
   });
-  res.status(StatusCodes.OK).json({ msg: 'user logged out!' });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: 'user logged out!' });
 };
 ```
 
@@ -3298,11 +3534,15 @@ import User from '../models/User.js';
 import Job from '../models/Job.js';
 
 export const getCurrentUser = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: 'get current user' });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: 'get current user' });
 };
 
 export const getApplicationStats = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: 'application stats' });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: 'application stats' });
 };
 
 export const updateUser = async (req, res) => {
@@ -3361,7 +3601,9 @@ UserSchema.methods.toJSON = function () {
 export const getCurrentUser = async (req, res) => {
   const user = await User.findOne({ _id: req.user.userId });
   const userWithoutPassword = user.toJSON();
-  res.status(StatusCodes.OK).json({ user: userWithoutPassword });
+  res
+    .status(StatusCodes.OK)
+    .json({ user: userWithoutPassword });
 };
 ```
 
@@ -3383,14 +3625,21 @@ const validateUpdateUserInput = withValidationErrors([
         throw new Error('email already exists');
       }
     }),
-  body('lastName').notEmpty().withMessage('last name is required'),
-  body('location').notEmpty().withMessage('location is required'),
+  body('lastName')
+    .notEmpty()
+    .withMessage('last name is required'),
+  body('location')
+    .notEmpty()
+    .withMessage('location is required'),
 ]);
 ```
 
 ```js
 export const updateUser = async (req, res) => {
-  const updatedUser = await User.findByIdAndUpdate(req.user.userId, req.body);
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.userId,
+    req.body,
+  );
   res.status(StatusCodes.OK).json({ msg: 'user updated' });
 };
 ```
@@ -3418,7 +3667,9 @@ export const getApplicationStats = async (req, res) => {
 export const authorizePermissions = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      throw new UnauthorizedError('Unauthorized to access this route');
+      throw new UnauthorizedError(
+        'Unauthorized to access this route',
+      );
     }
     next();
   };
@@ -3590,14 +3841,19 @@ Route actions are the "writes" to route loader "reads". They provide a way for a
 Register.jsx
 
 ```js
-import { Form, redirect, useNavigation, Link } from 'react-router-dom';
+import {
+  Form,
+  redirect,
+  useNavigation,
+  Link,
+} from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import { FormRow, Logo } from '../components';
 
 const Register = () => {
   return (
     <Wrapper>
-      <Form method='post' className='form'>
+      <Form method="post" className="form">
         ...
       </Form>
     </Wrapper>
@@ -3674,9 +3930,13 @@ const Register = () => {
   const isSubmitting = navigation.state === 'submitting';
   return (
     <Wrapper>
-      <Form method='post' className='form'>
+      <Form method="post" className="form">
         ....
-        <button type='submit' className='btn btn-block' disabled={isSubmitting}>
+        <button
+          type="submit"
+          className="btn btn-block"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? 'submitting...' : 'submit'}
         </button>
         ...
@@ -3705,8 +3965,8 @@ import { ToastContainer } from 'react-toastify';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
-    <ToastContainer position='top-center' />
-  </React.StrictMode>
+    <ToastContainer position="top-center" />
+  </React.StrictMode>,
 );
 ```
 
@@ -3732,7 +3992,12 @@ export const action = async ({ request }) => {
 #### Login User
 
 ```js
-import { Link, Form, redirect, useNavigation } from 'react-router-dom';
+import {
+  Link,
+  Form,
+  redirect,
+  useNavigation,
+} from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import { FormRow, Logo } from '../components';
 import customFetch from '../utils/customFetch';
@@ -3756,20 +4021,32 @@ const Login = () => {
   const isSubmitting = navigation.state === 'submitting';
   return (
     <Wrapper>
-      <Form method='post' className='form'>
+      <Form method="post" className="form">
         <Logo />
         <h4>login</h4>
-        <FormRow type='email' name='email' defaultValue='john@gmail.com' />
-        <FormRow type='password' name='password' defaultValue='secret123' />
-        <button type='submit' className='btn btn-block' disabled={isSubmitting}>
+        <FormRow
+          type="email"
+          name="email"
+          defaultValue="john@gmail.com"
+        />
+        <FormRow
+          type="password"
+          name="password"
+          defaultValue="secret123"
+        />
+        <button
+          type="submit"
+          className="btn btn-block"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? 'submitting...' : 'submit'}
         </button>
-        <button type='button' className='btn btn-block'>
+        <button type="button" className="btn btn-block">
           explore the app
         </button>
         <p>
           Not a member yet?
-          <Link to='/register' className='member-btn'>
+          <Link to="/register" className="member-btn">
             Register
           </Link>
         </p>
@@ -3809,9 +4086,11 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <Form method='post' className='form'>
+      <Form method="post" className="form">
         ...
-        {errors && <p style={{ color: 'red' }}>{errors.msg}</p>}
+        {errors && (
+          <p style={{ color: 'red' }}>{errors.msg}</p>
+        )}
         ...
       </Form>
     </Wrapper>
@@ -3900,8 +4179,15 @@ pages/AddJob.jsx
 import { FormRow } from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { useOutletContext } from 'react-router-dom';
-import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
-import { Form, useNavigation, redirect } from 'react-router-dom';
+import {
+  JOB_STATUS,
+  JOB_TYPE,
+} from '../../../utils/constants';
+import {
+  Form,
+  useNavigation,
+  redirect,
+} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import customFetch from '../utils/customFetch';
 
@@ -3912,21 +4198,21 @@ const AddJob = () => {
 
   return (
     <Wrapper>
-      <Form method='post' className='form'>
-        <h4 className='form-title'>add job</h4>
-        <div className='form-center'>
-          <FormRow type='text' name='position' />
-          <FormRow type='text' name='company' />
+      <Form method="post" className="form">
+        <h4 className="form-title">add job</h4>
+        <div className="form-center">
+          <FormRow type="text" name="position" />
+          <FormRow type="text" name="company" />
           <FormRow
-            type='text'
-            labelText='job location'
-            name='jobLocation'
+            type="text"
+            labelText="job location"
+            name="jobLocation"
             defaultValue={user.location}
           />
 
           <button
-            type='submit'
-            className='btn btn-block form-btn '
+            type="submit"
+            className="btn btn-block form-btn "
             disabled={isSubmitting}
           >
             {isSubmitting ? 'submitting...' : 'submit'}
@@ -3943,14 +4229,14 @@ export default AddJob;
 #### Select Input
 
 ```js
-<div className='form-row'>
-  <label htmlFor='jobStatus' className='form-label'>
+<div className="form-row">
+  <label htmlFor="jobStatus" className="form-label">
     job status
   </label>
   <select
-    name='jobStatus'
-    id='jobStatus'
-    className='form-select'
+    name="jobStatus"
+    id="jobStatus"
+    className="form-select"
     defaultValue={JOB_TYPE.FULL_TIME}
   >
     {Object.values(JOB_TYPE).map((itemValue) => {
@@ -3969,16 +4255,21 @@ export default AddJob;
 components/FormRowSelect.jsx
 
 ```js
-const FormRowSelect = ({ name, labelText, list, defaultValue = '' }) => {
+const FormRowSelect = ({
+  name,
+  labelText,
+  list,
+  defaultValue = '',
+}) => {
   return (
-    <div className='form-row'>
-      <label htmlFor={name} className='form-label'>
+    <div className="form-row">
+      <label htmlFor={name} className="form-label">
         {labelText || name}
       </label>
       <select
         name={name}
         id={name}
-        className='form-select'
+        className="form-select"
         defaultValue={defaultValue}
       >
         {list.map((itemValue) => {
@@ -4123,7 +4414,10 @@ export default Wrapper;
 
 ```js
 import { toast } from 'react-toastify';
-import { JobsContainer, SearchContainer } from '../components';
+import {
+  JobsContainer,
+  SearchContainer,
+} from '../components';
 import customFetch from '../utils/customFetch';
 import { useLoaderData } from 'react-router-dom';
 import { useContext, createContext } from 'react';
@@ -4169,7 +4463,8 @@ const AllJobs = () => {
   );
 };
 
-export const useAllJobsContext = () => useContext(AllJobsContext);
+export const useAllJobsContext = () =>
+  useContext(AllJobsContext);
 ```
 
 #### Render Jobs
@@ -4197,7 +4492,7 @@ const JobsContainer = () => {
 
   return (
     <Wrapper>
-      <div className='jobs'>
+      <div className="jobs">
         {jobs.map((job) => {
           return <Job key={job._id} {...job} />;
         })}
@@ -4254,7 +4549,11 @@ npm i dayjs@1.11.7
 - create JobInfo component
 
 ```js
-import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
+import {
+  FaLocationArrow,
+  FaBriefcase,
+  FaCalendarAlt,
+} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Job';
 import JobInfo from './JobInfo';
@@ -4277,24 +4576,32 @@ const Job = ({
   return (
     <Wrapper>
       <header>
-        <div className='main-icon'>{company.charAt(0)}</div>
-        <div className='info'>
+        <div className="main-icon">{company.charAt(0)}</div>
+        <div className="info">
           <h5>{position}</h5>
           <p>{company}</p>
         </div>
       </header>
-      <div className='content'>
-        <div className='content-center'>
-          <JobInfo icon={<FaLocationArrow />} text={jobLocation} />
+      <div className="content">
+        <div className="content-center">
+          <JobInfo
+            icon={<FaLocationArrow />}
+            text={jobLocation}
+          />
           <JobInfo icon={<FaCalendarAlt />} text={date} />
           <JobInfo icon={<FaBriefcase />} text={jobType} />
-          <div className={`status ${jobStatus}`}>{jobStatus}</div>
+          <div className={`status ${jobStatus}`}>
+            {jobStatus}
+          </div>
         </div>
 
-        <footer className='actions'>
-          <Link className='btn edit-btn'>Edit</Link>
+        <footer className="actions">
+          <Link className="btn edit-btn">Edit</Link>
           <Form>
-            <button type='submit' className='btn delete-btn'>
+            <button
+              type="submit"
+              className="btn delete-btn"
+            >
               Delete
             </button>
           </Form>
@@ -4315,8 +4622,8 @@ import Wrapper from '../assets/wrappers/JobInfo';
 const JobInfo = ({ icon, text }) => {
   return (
     <Wrapper>
-      <span className='job-icon'>{icon}</span>
-      <span className='job-text'>{text}</span>
+      <span className="job-icon">{icon}</span>
+      <span className="job-text">{text}</span>
     </Wrapper>
   );
 };
@@ -4446,7 +4753,7 @@ export default Wrapper;
 Job.jsx
 
 ```js
-<Link to={`../edit-job/${_id}`} className='btn edit-btn'>
+<Link to={`../edit-job/${_id}`} className="btn edit-btn">
   Edit
 </Link>
 ```
@@ -4457,8 +4764,15 @@ pages/EditJob.jsx
 import { FormRow, FormRowSelect } from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { useLoaderData } from 'react-router-dom';
-import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
-import { Form, useNavigation, redirect } from 'react-router-dom';
+import {
+  JOB_STATUS,
+  JOB_TYPE,
+} from '../../../utils/constants';
+import {
+  Form,
+  useNavigation,
+  redirect,
+} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import customFetch from '../utils/customFetch';
 
@@ -4496,7 +4810,9 @@ pages/EditJob.jsx
 ```js
 export const loader = async ({ params }) => {
   try {
-    const { data } = await customFetch.get(`/jobs/${params.id}`);
+    const { data } = await customFetch.get(
+      `/jobs/${params.id}`,
+    );
     return data;
   } catch (error) {
     toast.error(error.response.data.msg);
@@ -4544,33 +4860,41 @@ const EditJob = () => {
 
   return (
     <Wrapper>
-      <Form method='post' className='form'>
-        <h4 className='form-title'>edit job</h4>
-        <div className='form-center'>
-          <FormRow type='text' name='position' defaultValue={job.position} />
-          <FormRow type='text' name='company' defaultValue={job.company} />
+      <Form method="post" className="form">
+        <h4 className="form-title">edit job</h4>
+        <div className="form-center">
           <FormRow
-            type='text'
-            labelText='job location'
-            name='jobLocation'
+            type="text"
+            name="position"
+            defaultValue={job.position}
+          />
+          <FormRow
+            type="text"
+            name="company"
+            defaultValue={job.company}
+          />
+          <FormRow
+            type="text"
+            labelText="job location"
+            name="jobLocation"
             defaultValue={job.jobLocation}
           />
 
           <FormRowSelect
-            name='jobStatus'
-            labelText='job status'
+            name="jobStatus"
+            labelText="job status"
             defaultValue={job.jobStatus}
             list={Object.values(JOB_STATUS)}
           />
           <FormRowSelect
-            name='jobType'
-            labelText='job type'
+            name="jobType"
+            labelText="job type"
             defaultValue={job.jobType}
             list={Object.values(JOB_TYPE)}
           />
           <button
-            type='submit'
-            className='btn btn-block form-btn '
+            type="submit"
+            className="btn btn-block form-btn "
             disabled={isSubmitting}
           >
             {isSubmitting ? 'submitting...' : 'submit'}
@@ -4589,8 +4913,8 @@ export default EditJob;
 Job.jsx
 
 ```js
-<Form method='post' action={`../delete-job/${_id}`}>
-  <button type='submit' className='btn delete-btn'>
+<Form method="post" action={`../delete-job/${_id}`}>
+  <button type="submit" className="btn delete-btn">
     Delete
   </button>
 </Form>
@@ -4627,7 +4951,10 @@ import { action as deleteJobAction } from './pages/DeleteJob';
 pages/Admin.jsx
 
 ```js
-import { FaSuitcaseRolling, FaCalendarCheck } from 'react-icons/fa';
+import {
+  FaSuitcaseRolling,
+  FaCalendarCheck,
+} from 'react-icons/fa';
 
 import { useLoaderData, redirect } from 'react-router-dom';
 import customFetch from '../utils/customFetch';
@@ -4635,7 +4962,9 @@ import Wrapper from '../assets/wrappers/StatsContainer';
 import { toast } from 'react-toastify';
 export const loader = async () => {
   try {
-    const response = await customFetch.get('/users/admin/app-stats');
+    const response = await customFetch.get(
+      '/users/admin/app-stats',
+    );
     return response.data;
   } catch (error) {
     toast.error('You are not authorized to view this page');
@@ -4694,10 +5023,10 @@ const StatItem = ({ count, title, icon, color, bcg }) => {
   return (
     <Wrapper color={color} bcg={bcg}>
       <header>
-        <span className='count'>{count}</span>
-        <span className='icon'>{icon}</span>
+        <span className="count">{count}</span>
+        <span className="icon">{icon}</span>
       </header>
-      <h5 className='title'>{title}</h5>
+      <h5 className="title">{title}</h5>
     </Wrapper>
   );
 };
@@ -4716,17 +5045,17 @@ const Admin = () => {
   return (
     <Wrapper>
       <StatItem
-        title='current users'
+        title="current users"
         count={users}
-        color='#e9b949'
-        bcg='#fcefc7'
+        color="#e9b949"
+        bcg="#fcefc7"
         icon={<FaSuitcaseRolling />}
       />
       <StatItem
-        title='total jobs'
+        title="total jobs"
         count={jobs}
-        color='#647acb'
-        bcg='#e0e8f9'
+        color="#647acb"
+        bcg="#e0e8f9"
         icon={<FaCalendarCheck />}
       />
     </Wrapper>
@@ -4822,7 +5151,9 @@ import path from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.use(express.static(path.resolve(__dirname, './public')));
+app.use(
+  express.static(path.resolve(__dirname, './public')),
+);
 ```
 
 - http://localhost:5100/imageName
@@ -4860,37 +5191,55 @@ const Profile = () => {
   const isSubmitting = navigation.state === 'submitting';
   return (
     <Wrapper>
-      <Form method='post' className='form' encType='multipart/form-data'>
-        <h4 className='form-title'>profile</h4>
+      <Form
+        method="post"
+        className="form"
+        encType="multipart/form-data"
+      >
+        <h4 className="form-title">profile</h4>
 
-        <div className='form-center'>
-          <div className='form-row'>
-            <label htmlFor='image' className='form-label'>
+        <div className="form-center">
+          <div className="form-row">
+            <label htmlFor="image" className="form-label">
               Select an image file (max 0.5 MB):
             </label>
             <input
-              type='file'
-              id='avatar'
-              name='avatar'
-              className='form-input'
-              accept='image/*'
+              type="file"
+              id="avatar"
+              name="avatar"
+              className="form-input"
+              accept="image/*"
             />
           </div>
-          <FormRow type='text' name='name' defaultValue={name} />
           <FormRow
-            type='text'
-            labelText='last name'
-            name='lastName'
+            type="text"
+            name="name"
+            defaultValue={name}
+          />
+          <FormRow
+            type="text"
+            labelText="last name"
+            name="lastName"
             defaultValue={lastName}
           />
-          <FormRow type='email' name='email' defaultValue={email} />
-          <FormRow type='text' name='location' defaultValue={location} />
+          <FormRow
+            type="email"
+            name="email"
+            defaultValue={email}
+          />
+          <FormRow
+            type="text"
+            name="location"
+            defaultValue={location}
+          />
           <button
-            className='btn btn-block form-btn'
-            type='submit'
+            className="btn btn-block form-btn"
+            type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'submitting...' : 'save changes'}
+            {isSubmitting
+              ? 'submitting...'
+              : 'save changes'}
           </button>
         </div>
       </Form>
@@ -4964,7 +5313,7 @@ router.patch(
   '/update-user',
   upload.single('avatar'),
   validateUpdateUserInput,
-  updateUser
+  updateUser,
 );
 ```
 
@@ -5022,16 +5371,23 @@ export const updateUser = async (req, res) => {
   const newUser = { ...req.body };
   delete newUser.password;
   if (req.file) {
-    const response = await cloudinary.v2.uploader.upload(req.file.path);
+    const response = await cloudinary.v2.uploader.upload(
+      req.file.path,
+    );
     await fs.unlink(req.file.path);
     newUser.avatar = response.secure_url;
     newUser.avatarPublicId = response.public_id;
   }
 
-  const updatedUser = await User.findByIdAndUpdate(req.user.userId, newUser);
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.userId,
+    newUser,
+  );
 
   if (req.file && updatedUser.avatarPublicId) {
-    await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
+    await cloudinary.v2.uploader.destroy(
+      updatedUser.avatarPublicId,
+    );
   }
   res.status(StatusCodes.OK).json({ msg: 'update user' });
 };
@@ -5042,7 +5398,7 @@ export const updateUser = async (req, res) => {
 ```js
 {
   user.avatar ? (
-    <img src={user.avatar} alt='avatar' className='img' />
+    <img src={user.avatar} alt="avatar" className="img" />
   ) : (
     <FaUserCircle />
   );
@@ -5063,7 +5419,7 @@ const SubmitBtn = ({ formBtn }) => {
   const isSubmitting = navigation.state === 'submitting';
   return (
     <button
-      type='submit'
+      type="submit"
       className={`btn btn-block ${formBtn && 'form-btn'}`}
       disabled={isSubmitting}
     >
@@ -5211,10 +5567,14 @@ import User from './models/UserModel.js';
 try {
   await mongoose.connect(process.env.MONGO_URL);
   // const user = await User.findOne({ email: 'john@gmail.com' });
-  const user = await User.findOne({ email: 'test@test.com' });
+  const user = await User.findOne({
+    email: 'test@test.com',
+  });
 
   const jsonJobs = JSON.parse(
-    await readFile(new URL('./utils/mockData.json', import.meta.url))
+    await readFile(
+      new URL('./utils/mockData.json', import.meta.url),
+    ),
   );
   const jobs = jsonJobs.map((job) => {
     return { ...job, createdBy: user._id };
@@ -5262,7 +5622,9 @@ export const showStats = async (req, res) => {
       count: 3,
     },
   ];
-  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
+  res
+    .status(StatusCodes.OK)
+    .json({ defaultStats, monthlyApplications });
 };
 ```
 
@@ -5277,7 +5639,13 @@ jobController.js
 ```js
 export const showStats = async (req, res) => {
   let stats = await Job.aggregate([
-    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+    {
+      $match: {
+        createdBy: new mongoose.Types.ObjectId(
+          req.user.userId,
+        ),
+      },
+    },
     { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
   ]);
   stats = stats.reduce((acc, curr) => {
@@ -5293,10 +5661,19 @@ export const showStats = async (req, res) => {
   };
 
   let monthlyApplications = await Job.aggregate([
-    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+    {
+      $match: {
+        createdBy: new mongoose.Types.ObjectId(
+          req.user.userId,
+        ),
+      },
+    },
     {
       $group: {
-        _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+        _id: {
+          year: { $year: '$createdAt' },
+          month: { $month: '$createdAt' },
+        },
         count: { $sum: 1 },
       },
     },
@@ -5318,7 +5695,9 @@ export const showStats = async (req, res) => {
     })
     .reverse();
 
-  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
+  res
+    .status(StatusCodes.OK)
+    .json({ defaultStats, monthlyApplications });
 };
 ```
 
@@ -5326,7 +5705,13 @@ export const showStats = async (req, res) => {
 
 ```js
 let stats = await Job.aggregate([
-  { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+  {
+    $match: {
+      createdBy: new mongoose.Types.ObjectId(
+        req.user.userId,
+      ),
+    },
+  },
   { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
 ]);
 ```
@@ -5339,10 +5724,19 @@ let stats = await Job.aggregate([ ... ]); This line says we're going to perform 
 
 ```js
 let monthlyApplications = await Job.aggregate([
-  { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+  {
+    $match: {
+      createdBy: new mongoose.Types.ObjectId(
+        req.user.userId,
+      ),
+    },
+  },
   {
     $group: {
-      _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+      _id: {
+        year: { $year: '$createdAt' },
+        month: { $month: '$createdAt' },
+      },
       count: { $sum: 1 },
     },
   },
@@ -5372,7 +5766,10 @@ So, monthlyApplications will be an array with up to 6 elements, each representin
 pages/Stats.jsx
 
 ```js
-import { ChartsContainer, StatsContainer } from '../components';
+import {
+  ChartsContainer,
+  StatsContainer,
+} from '../components';
 import customFetch from '../utils/customFetch';
 import { useLoaderData } from 'react-router-dom';
 export const loader = async () => {
@@ -5385,7 +5782,8 @@ export const loader = async () => {
 };
 
 const Stats = () => {
-  const { defaultStats, monthlyApplications } = useLoaderData();
+  const { defaultStats, monthlyApplications } =
+    useLoaderData();
   return (
     <>
       <StatsContainer defaultStats={defaultStats} />
@@ -5401,7 +5799,11 @@ export default Stats;
 #### Stats Container
 
 ```js
-import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from 'react-icons/fa';
+import {
+  FaSuitcaseRolling,
+  FaCalendarCheck,
+  FaBug,
+} from 'react-icons/fa';
 import Wrapper from '../assets/wrappers/StatsContainer';
 import StatItem from './StatItem';
 const StatsContainer = ({ defaultStats }) => {
@@ -5412,6 +5814,7 @@ const StatsContainer = ({ defaultStats }) => {
       icon: <FaSuitcaseRolling />,
       color: '#f59e0b',
       bcg: '#fef3c7',
+      ty,
     },
     {
       title: 'interviews scheduled',
@@ -5454,10 +5857,17 @@ const ChartsContainer = ({ data }) => {
   return (
     <Wrapper>
       <h4>Monthly Applications</h4>
-      <button type='button' onClick={() => setBarChart(!barChart)}>
+      <button
+        type="button"
+        onClick={() => setBarChart(!barChart)}
+      >
         {barChart ? 'Area Chart' : 'Bar Chart'}
       </button>
-      {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}
+      {barChart ? (
+        <BarChart data={data} />
+      ) : (
+        <AreaChart data={data} />
+      )}
     </Wrapper>
   );
 };
@@ -5490,13 +5900,18 @@ import {
 
 const AreaChartComponent = ({ data }) => {
   return (
-    <ResponsiveContainer width='100%' height={300}>
+    <ResponsiveContainer width="100%" height={300}>
       <AreaChart data={data} margin={{ top: 50 }}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='date' />
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
         <YAxis allowDecimals={false} />
         <Tooltip />
-        <Area type='monotone' dataKey='count' stroke='#2cb1bc' fill='#bef8fd' />
+        <Area
+          type="monotone"
+          dataKey="count"
+          stroke="#2cb1bc"
+          fill="#bef8fd"
+        />
       </AreaChart>
     </ResponsiveContainer>
   );
@@ -5520,13 +5935,13 @@ import {
 
 const BarChartComponent = ({ data }) => {
   return (
-    <ResponsiveContainer width='100%' height={300}>
+    <ResponsiveContainer width="100%" height={300}>
       <BarChart data={data} margin={{ top: 50 }}>
-        <CartesianGrid strokeDasharray='3 3 ' />
-        <XAxis dataKey='date' />
+        <CartesianGrid strokeDasharray="3 3 " />
+        <XAxis dataKey="date" />
         <YAxis allowDecimals={false} />
         <Tooltip />
-        <Bar dataKey='count' fill='#2cb1bc' barSize={75} />
+        <Bar dataKey="count" fill="#2cb1bc" barSize={75} />
       </BarChart>
     </ResponsiveContainer>
   );
@@ -5613,7 +6028,12 @@ export const getAllJobs = async (req, res) => {
 
   res
     .status(StatusCodes.OK)
-    .json({ totalJobs, numOfPages, currentPage: page, jobs });
+    .json({
+      totalJobs,
+      numOfPages,
+      currentPage: page,
+      jobs,
+    });
 };
 ```
 
@@ -5625,37 +6045,48 @@ export const getAllJobs = async (req, res) => {
 import { FormRow, FormRowSelect, SubmitBtn } from '.';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { Form, useSubmit, Link } from 'react-router-dom';
-import { JOB_TYPE, JOB_STATUS, JOB_SORT_BY } from '../../../utils/constants';
+import {
+  JOB_TYPE,
+  JOB_STATUS,
+  JOB_SORT_BY,
+} from '../../../utils/constants';
 import { useAllJobsContext } from '../pages/AllJobs';
 
 const SearchContainer = () => {
   return (
     <Wrapper>
-      <Form className='form'>
-        <h5 className='form-title'>search form</h5>
-        <div className='form-center'>
+      <Form className="form">
+        <h5 className="form-title">search form</h5>
+        <div className="form-center">
           {/* search position */}
 
-          <FormRow type='search' name='search' defaultValue='a' />
+          <FormRow
+            type="search"
+            name="search"
+            defaultValue="a"
+          />
           <FormRowSelect
-            labelText='job status'
-            name='jobStatus'
+            labelText="job status"
+            name="jobStatus"
             list={['all', ...Object.values(JOB_STATUS)]}
-            defaultValue='all'
+            defaultValue="all"
           />
           <FormRowSelect
-            labelText='job type'
-            name='jobType'
+            labelText="job type"
+            name="jobType"
             list={['all', ...Object.values(JOB_TYPE)]}
-            defaultValue='all'
+            defaultValue="all"
           />
           <FormRowSelect
-            name='sort'
-            defaultValue='newest'
+            name="sort"
+            defaultValue="newest"
             list={[...Object.values(JOB_SORT_BY)]}
           />
 
-          <Link to='/dashboard/all-jobs' className='btn form-btn delete-btn'>
+          <Link
+            to="/dashboard/all-jobs"
+            className="btn form-btn delete-btn"
+          >
             Reset Search Values
           </Link>
           {/* TEMP!!!! */}
@@ -5675,7 +6106,10 @@ AllJobs.jsx
 
 ```js
 import { toast } from 'react-toastify';
-import { JobsContainer, SearchContainer } from '../components';
+import {
+  JobsContainer,
+  SearchContainer,
+} from '../components';
 import customFetch from '../utils/customFetch';
 import { useLoaderData } from 'react-router-dom';
 import { useContext, createContext } from 'react';
@@ -5712,7 +6146,8 @@ const AllJobs = () => {
 };
 export default AllJobs;
 
-export const useAllJobsContext = () => useContext(AllJobsContext);
+export const useAllJobsContext = () =>
+  useContext(AllJobsContext);
 ```
 
 ```js
@@ -5745,7 +6180,11 @@ SearchContainer.js
 import { FormRow, FormRowSelect } from '.';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { Form, useSubmit, Link } from 'react-router-dom';
-import { JOB_TYPE, JOB_STATUS, JOB_SORT_BY } from '../../../utils/constants';
+import {
+  JOB_TYPE,
+  JOB_STATUS,
+  JOB_SORT_BY,
+} from '../../../utils/constants';
 import { useAllJobsContext } from '../pages/AllJobs';
 const SearchContainer = () => {
   const { searchValues } = useAllJobsContext();
@@ -5755,22 +6194,22 @@ const SearchContainer = () => {
 
   return (
     <Wrapper>
-      <Form className='form'>
-        <h5 className='form-title'>search form</h5>
-        <div className='form-center'>
+      <Form className="form">
+        <h5 className="form-title">search form</h5>
+        <div className="form-center">
           {/* search position */}
 
           <FormRow
-            type='search'
-            name='search'
+            type="search"
+            name="search"
             defaultValue={search}
             onChange={(e) => {
               submit(e.currentTarget.form);
             }}
           />
           <FormRowSelect
-            labelText='job status'
-            name='jobStatus'
+            labelText="job status"
+            name="jobStatus"
             list={['all', ...Object.values(JOB_STATUS)]}
             defaultValue={jobStatus}
             onChange={(e) => {
@@ -5778,8 +6217,8 @@ const SearchContainer = () => {
             }}
           />
           <FormRowSelect
-            labelText='job type'
-            name='jobType'
+            labelText="job type"
+            name="jobType"
             defaultValue={jobType}
             list={['all', ...Object.values(JOB_TYPE)]}
             onChange={(e) => {
@@ -5787,14 +6226,17 @@ const SearchContainer = () => {
             }}
           />
           <FormRowSelect
-            name='sort'
+            name="sort"
             defaultValue={sort}
             list={[...Object.values(JOB_SORT_BY)]}
             onChange={(e) => {
               submit(e.currentTarget.form);
             }}
           />
-          <Link to='/dashboard/all-jobs' className='btn form-btn delete-btn'>
+          <Link
+            to="/dashboard/all-jobs"
+            className="btn form-btn delete-btn"
+          >
             Reset Search Values
           </Link>
         </div>
@@ -5824,8 +6266,8 @@ const debounce = (onChange) => {
   };
 };
 <FormRow
-  type='search'
-  name='search'
+  type="search"
+  name="search"
   defaultValue={search}
   onChange={debounce((form) => {
     submit(form);
@@ -5861,7 +6303,7 @@ const JobsContainer = () => {
       <h5>
         {totalJobs} job{jobs.length > 1 && 's'} found
       </h5>
-      <div className='jobs'>
+      <div className="jobs">
         {jobs.map((job) => {
           return <Job key={job._id} {...job} />;
         })}
@@ -5877,9 +6319,16 @@ export default JobsContainer;
 #### Basic PageBtnContainer
 
 ```js
-import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
+import {
+  HiChevronDoubleLeft,
+  HiChevronDoubleRight,
+} from 'react-icons/hi';
 import Wrapper from '../assets/wrappers/PageBtnContainer';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import {
+  useLocation,
+  Link,
+  useNavigate,
+} from 'react-router-dom';
 import { useAllJobsContext } from '../pages/AllJobs';
 
 const PageBtnContainer = () => {
@@ -5888,7 +6337,10 @@ const PageBtnContainer = () => {
   } = useAllJobsContext();
   const { search, pathname } = useLocation();
   const navigate = useNavigate();
-  const pages = Array.from({ length: numOfPages }, (_, index) => index + 1);
+  const pages = Array.from(
+    { length: numOfPages },
+    (_, index) => index + 1,
+  );
 
   const handlePageChange = (pageNumber) => {
     const searchParams = new URLSearchParams(search);
@@ -5899,7 +6351,7 @@ const PageBtnContainer = () => {
   return (
     <Wrapper>
       <button
-        className='btn prev-btn'
+        className="btn prev-btn"
         onClick={() => {
           let prevPage = currentPage - 1;
           if (prevPage < 1) prevPage = numOfPages;
@@ -5909,7 +6361,7 @@ const PageBtnContainer = () => {
         <HiChevronDoubleLeft />
         prev
       </button>
-      <div className='btn-container'>
+      <div className="btn-container">
         {pages.map((pageNumber) => (
           <button
             className={`btn page-btn ${pageNumber === currentPage && 'active'}`}
@@ -5921,7 +6373,7 @@ const PageBtnContainer = () => {
         ))}
       </div>
       <button
-        className='btn next-btn'
+        className="btn next-btn"
         onClick={() => {
           let nextPage = currentPage + 1;
           if (nextPage > numOfPages) nextPage = 1;
@@ -5941,9 +6393,16 @@ export default PageBtnContainer;
 #### Complex - PageBtnContainer
 
 ```js
-import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
+import {
+  HiChevronDoubleLeft,
+  HiChevronDoubleRight,
+} from 'react-icons/hi';
 import Wrapper from '../assets/wrappers/PageBtnContainer';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import {
+  useLocation,
+  Link,
+  useNavigate,
+} from 'react-router-dom';
 import { useAllJobsContext } from '../pages/AllJobs';
 
 const PageBtnContainer = () => {
@@ -5976,41 +6435,56 @@ const PageBtnContainer = () => {
 
     // Add the first page button
     pageButtons.push(
-      addPageButton({ pageNumber: 1, activeClass: currentPage === 1 })
+      addPageButton({
+        pageNumber: 1,
+        activeClass: currentPage === 1,
+      }),
     );
     // Add the dots before the current page if there are more than 3 pages
     if (currentPage > 3) {
       pageButtons.push(
-        <span className='page-btn dots' key='dots-1'>
+        <span className="page-btn dots" key="dots-1">
           ....
-        </span>
+        </span>,
       );
     }
     // one before current page
     if (currentPage !== 1 && currentPage !== 2) {
       pageButtons.push(
-        addPageButton({ pageNumber: currentPage - 1, activeClass: false })
+        addPageButton({
+          pageNumber: currentPage - 1,
+          activeClass: false,
+        }),
       );
     }
 
     // Add the current page button
     if (currentPage !== 1 && currentPage !== numOfPages) {
       pageButtons.push(
-        addPageButton({ pageNumber: currentPage, activeClass: true })
+        addPageButton({
+          pageNumber: currentPage,
+          activeClass: true,
+        }),
       );
     }
 
     // one after current page
-    if (currentPage !== numOfPages && currentPage !== numOfPages - 1) {
+    if (
+      currentPage !== numOfPages &&
+      currentPage !== numOfPages - 1
+    ) {
       pageButtons.push(
-        addPageButton({ pageNumber: currentPage + 1, activeClass: false })
+        addPageButton({
+          pageNumber: currentPage + 1,
+          activeClass: false,
+        }),
       );
     }
     if (currentPage < numOfPages - 2) {
       pageButtons.push(
-        <span className=' page-btn dots' key='dots+1'>
+        <span className=" page-btn dots" key="dots+1">
           ....
-        </span>
+        </span>,
       );
     }
 
@@ -6019,7 +6493,7 @@ const PageBtnContainer = () => {
       addPageButton({
         pageNumber: numOfPages,
         activeClass: currentPage === numOfPages,
-      })
+      }),
     );
 
     return pageButtons;
@@ -6028,7 +6502,7 @@ const PageBtnContainer = () => {
   return (
     <Wrapper>
       <button
-        className='prev-btn'
+        className="prev-btn"
         onClick={() => {
           let prevPage = currentPage - 1;
           if (prevPage < 1) prevPage = numOfPages;
@@ -6038,9 +6512,11 @@ const PageBtnContainer = () => {
         <HiChevronDoubleLeft />
         prev
       </button>
-      <div className='btn-container'>{renderPageButtons()}</div>
+      <div className="btn-container">
+        {renderPageButtons()}
+      </div>
       <button
-        className='btn next-btn'
+        className="btn next-btn"
         onClick={() => {
           let nextPage = currentPage + 1;
           if (nextPage > numOfPages) nextPage = 1;
@@ -6133,7 +6609,6 @@ cd client && npm run build
 ```
 
 - copy/paste all the files/folders
-
   - from client/dist
   - to server(root)/public
 
@@ -6141,7 +6616,9 @@ cd client && npm run build
 
 ```js
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './public', 'index.html'));
+  res.sendFile(
+    path.resolve(__dirname, './public', 'index.html'),
+  );
 });
 ```
 
@@ -6168,10 +6645,14 @@ package.json
 server.js
 
 ```js
-app.use(express.static(path.resolve(__dirname, './client/dist')));
+app.use(
+  express.static(path.resolve(__dirname, './client/dist')),
+);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'));
+  res.sendFile(
+    path.resolve(__dirname, './client/dist', 'index.html'),
+  );
 });
 ```
 
@@ -6212,7 +6693,9 @@ const upload = multer({ storage });
 const parser = new DataParser();
 
 export const formatImage = (file) => {
-  const fileExtension = path.extname(file.originalname).toString();
+  const fileExtension = path
+    .extname(file.originalname)
+    .toString();
   return parser.format(fileExtension, file.buffer).content;
 };
 
@@ -6229,14 +6712,20 @@ export const updateUser = async (req, res) => {
   delete newUser.password;
   if (req.file) {
     const file = formatImage(req.file);
-    const response = await cloudinary.v2.uploader.upload(file);
+    const response =
+      await cloudinary.v2.uploader.upload(file);
     newUser.avatar = response.secure_url;
     newUser.avatarPublicId = response.public_id;
   }
-  const updatedUser = await User.findByIdAndUpdate(req.user.userId, newUser);
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.userId,
+    newUser,
+  );
 
   if (req.file && updatedUser.avatarPublicId) {
-    await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
+    await cloudinary.v2.uploader.destroy(
+      updatedUser.avatarPublicId,
+    );
   }
   res.status(StatusCodes.OK).json({ msg: 'update user' });
 };
@@ -6251,7 +6740,7 @@ components/Loading.jsx
 
 ```js
 const Loading = () => {
-  return <div className='loading'></div>;
+  return <div className="loading"></div>;
 };
 
 export default Loading;
@@ -6270,8 +6759,12 @@ const DashboardLayout = ({ isDarkThemeEnabled }) => {
   return (
     <Wrapper>
       ...
-      <div className='dashboard-page'>
-        {isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
+      <div className="dashboard-page">
+        {isPageLoading ? (
+          <Loading />
+        ) : (
+          <Outlet context={{ user }} />
+        )}
       </div>
       ...
     </Wrapper>
@@ -6294,7 +6787,10 @@ npm i @tanstack/react-query@4.29.5 @tanstack/react-query-devtools@4.29.6
 App.jsx
 
 ```js
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient({
@@ -6366,7 +6862,10 @@ App.jsx
 Stats.jsx
 
 ```js
-import { ChartsContainer, StatsContainer } from '../components';
+import {
+  ChartsContainer,
+  StatsContainer,
+} from '../components';
 import customFetch from '../utils/customFetch';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -6463,7 +6962,10 @@ App.jsx
 Stats.jsx
 
 ```js
-import { ChartsContainer, StatsContainer } from '../components';
+import {
+  ChartsContainer,
+  StatsContainer,
+} from '../components';
 import customFetch from '../utils/customFetch';
 import { useQuery } from '@tanstack/react-query';
 
@@ -6476,7 +6978,8 @@ const statsQuery = {
 };
 
 export const loader = (queryClient) => async () => {
-  const data = await queryClient.ensureQueryData(statsQuery);
+  const data =
+    await queryClient.ensureQueryData(statsQuery);
   return data;
 };
 
@@ -6504,7 +7007,9 @@ DashboardLayout.jsx
 const userQuery = {
   queryKey: ['user'],
   queryFn: async () => {
-    const { data } = await customFetch('/users/current-user');
+    const { data } = await customFetch(
+      '/users/current-user',
+    );
     return data;
   },
 };
@@ -6568,7 +7073,10 @@ export const action =
       return null;
     }
     try {
-      await customFetch.patch('/users/update-user', formData);
+      await customFetch.patch(
+        '/users/update-user',
+        formData,
+      );
       queryClient.invalidateQueries(['user']);
       toast.success('Profile updated successfully');
       return redirect('/dashboard');
@@ -6585,7 +7093,10 @@ AllJobs.jsx
 
 ```js
 import { toast } from 'react-toastify';
-import { JobsContainer, SearchContainer } from '../components';
+import {
+  JobsContainer,
+  SearchContainer,
+} from '../components';
 import customFetch from '../utils/customFetch';
 import { useLoaderData } from 'react-router-dom';
 import { useContext, createContext } from 'react';
@@ -6635,7 +7146,8 @@ const AllJobs = () => {
 };
 export default AllJobs;
 
-export const useAllJobsContext = () => useContext(AllJobsContext);
+export const useAllJobsContext = () =>
+  useContext(AllJobsContext);
 ```
 
 #### Invalidate Jobs
@@ -6700,10 +7212,17 @@ export const action =
 #### Edit Job Loader
 
 ```js
-import { FormRow, FormRowSelect, SubmitBtn } from '../components';
+import {
+  FormRow,
+  FormRowSelect,
+  SubmitBtn,
+} from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { useLoaderData, useParams } from 'react-router-dom';
-import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
+import {
+  JOB_STATUS,
+  JOB_TYPE,
+} from '../../../utils/constants';
 import { Form, redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import customFetch from '../utils/customFetch';
@@ -6723,7 +7242,9 @@ export const loader =
   (queryClient) =>
   async ({ params }) => {
     try {
-      await queryClient.ensureQueryData(singleJobQuery(params.id));
+      await queryClient.ensureQueryData(
+        singleJobQuery(params.id),
+      );
       return params.id;
     } catch (error) {
       toast.error(error?.response?.data?.msg);
@@ -6757,26 +7278,34 @@ const EditJob = () => {
 
   return (
     <Wrapper>
-      <Form method='post' className='form'>
-        <h4 className='form-title'>edit job</h4>
-        <div className='form-center'>
-          <FormRow type='text' name='position' defaultValue={job.position} />
-          <FormRow type='text' name='company' defaultValue={job.company} />
+      <Form method="post" className="form">
+        <h4 className="form-title">edit job</h4>
+        <div className="form-center">
           <FormRow
-            type='text'
-            name='jobLocation'
-            labelText='job location'
+            type="text"
+            name="position"
+            defaultValue={job.position}
+          />
+          <FormRow
+            type="text"
+            name="company"
+            defaultValue={job.company}
+          />
+          <FormRow
+            type="text"
+            name="jobLocation"
+            labelText="job location"
             defaultValue={job.jobLocation}
           />
           <FormRowSelect
-            name='jobStatus'
-            labelText='job status'
+            name="jobStatus"
+            labelText="job status"
             defaultValue={job.jobStatus}
             list={Object.values(JOB_STATUS)}
           />
           <FormRowSelect
-            name='jobType'
-            labelText='job type'
+            name="jobType"
+            labelText="job type"
             defaultValue={job.jobType}
             list={Object.values(JOB_TYPE)}
           />
@@ -6864,8 +7393,20 @@ import rateLimiter from 'express-rate-limit';
 const apiLimiter = rateLimiter({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 15,
-  message: { msg: 'IP rate limit exceeded, retry in 15 minutes.' },
+  message: {
+    msg: 'IP rate limit exceeded, retry in 15 minutes.',
+  },
 });
-router.post('/register', apiLimiter, validateRegisterInput, register);
-router.post('/login', apiLimiter, validateLoginInput, login);
+router.post(
+  '/register',
+  apiLimiter,
+  validateRegisterInput,
+  register,
+);
+router.post(
+  '/login',
+  apiLimiter,
+  validateLoginInput,
+  login,
+);
 ```
