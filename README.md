@@ -30,3 +30,7 @@ loading - The loaders for the next routes are being called to render the next pa
 In production systems, many teams skip disk storage completely and
 upload directly to Cloudinary using streams.
 That way you don't need multer.diskStorage or fs.unlink at all.
+
+#### Run populate script in typescript:
+
+npx tsx src/populate.ts

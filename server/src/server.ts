@@ -3,15 +3,12 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 // #### IMPORTS - packages
-import 'express-async-errors'; //middleware that helps handle errors that occur within asynchronous functions. It catches unhandled errors inside async/await functions and forwards them to Express.js's error handling middleware, preventing the Node.js process from crashing. //You do not need try catch for basic crud async operation
+import 'express-async-errors'; //middleware that helps handle errors that occur within asynchronous functions. It catches unhandled errors inside async/await functions and forwards them to Express.js's error handling middleware, preventing the Node.js process from crashing.
+//You do not need try catch for basic crud async operation
 import express from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import { v2 as cloudinary } from 'cloudinary';
 
 // ## IMPORTS - routes
 import jobRouter from './routes/job.router';
@@ -25,23 +22,13 @@ import authMiddleware from './middleware/auth.middleware';
 
 // #### MIDDLEWARES
 const app = express();
-
-app.use(express.json()); //Accept JSON files
+//Accept JSON files
+app.use(express.json());
+// HTTP request logger middleware for node.js
 if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev')); // HTTP request logger middleware for node.js
+  app.use(morgan('dev'));
 }
 app.use(cookieParser());
-//Public folder
-const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use(
-  express.static(path.resolve(__dirname, './public')),
-);
-//Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET,
-});
 
 // ## ROUTES
 app.use(

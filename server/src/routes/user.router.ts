@@ -14,6 +14,7 @@ router.get(
 );
 router.patch(
   '/update-user',
+  authMiddleware.checkForTestUser,
   upload.single('avatar'), //parse multipart form
   validatorMiddleware.validateUpdateUserInput,
   userController.updateUser,
