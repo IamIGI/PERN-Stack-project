@@ -13,6 +13,8 @@ router
     jobController.createJob,
   );
 
+router.route('/stats').get(jobController.showStats);
+
 router
   .route('/:id')
   .get(
