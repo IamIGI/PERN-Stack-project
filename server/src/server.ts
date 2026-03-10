@@ -9,6 +9,10 @@ import express from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
 
 // ## IMPORTS - routes
 import jobRouter from './routes/job.router';
@@ -28,7 +32,18 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+//Public folder
 app.use(cookieParser());
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(
+  express.static(path.resolve(__dirname, './public')),
+);
+//Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 // ## ROUTES
 app.use(
