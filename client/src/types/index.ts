@@ -32,6 +32,22 @@ export interface AppStatsResponse {
   jobs: number;
 }
 
+export type DefaultJobStats = {
+  pending: number;
+  interview: number;
+  declined: number;
+};
+
+export type MonthlyJobApplication = {
+  date: string;
+  count: number;
+};
+
+export type JobStatsResponse = {
+  defaultStats: DefaultJobStats;
+  monthlyApplications: MonthlyJobApplication[];
+};
+
 export const JobStatus = {
   PENDING: 'pending',
   INTERVIEW: 'interview',
