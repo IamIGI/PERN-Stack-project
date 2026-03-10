@@ -3,7 +3,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 // #### IMPORTS - packages
-import 'express-async-errors'; //middleware that helps handle errors that occur within asynchronous functions. It catches unhandled errors inside async/await functions and forwards them to Express.js's error handling middleware, preventing the Node.js process from crashing. //You do not need try catch for basic crud async operation
+import 'express-async-errors'; //middleware that helps handle errors that occur within asynchronous functions. It catches unhandled errors inside async/await functions and forwards them to Express.js's error handling middleware, preventing the Node.js process from crashing.
+//You do not need try catch for basic crud async operation
 import express from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
@@ -23,9 +24,9 @@ import errorHandlerMiddleware from './middleware/errorHandler.middleware';
 import notFoundHandlerMiddleware from './middleware/notFoundHandler.middleware';
 import authMiddleware from './middleware/auth.middleware';
 
-// #### MIDDLEWARES
 const app = express();
 
+// #### MIDDLEWARES
 app.use(express.json()); //Accept JSON files
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev')); // HTTP request logger middleware for node.js

@@ -7,6 +7,7 @@ declare global {
       user?: {
         userId: mongoose.Types.ObjectId;
         role: string;
+        testUser?: boolean;
       };
     }
   }
