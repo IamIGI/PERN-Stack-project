@@ -24,16 +24,15 @@ import errorHandlerMiddleware from './middleware/errorHandler.middleware';
 import notFoundHandlerMiddleware from './middleware/notFoundHandler.middleware';
 import authMiddleware from './middleware/auth.middleware';
 
-// #### MIDDLEWARES
 const app = express();
-//Accept JSON files
-app.use(express.json());
-// HTTP request logger middleware for node.js
+
+// #### MIDDLEWARES
+app.use(express.json()); //Accept JSON files
 if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+  app.use(morgan('dev')); // HTTP request logger middleware for node.js
 }
-//Public folder
 app.use(cookieParser());
+//Public folder
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(
   express.static(path.resolve(__dirname, './public')),
