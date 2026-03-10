@@ -12,8 +12,9 @@ try {
   await mongoose.connect(MONGODB_URL);
 
   const user = await userModel.findOne({
-    email: 'test@test.com   ',
+    email: 'test@test.com',
   });
+  console.log('User found: ', user);
 
   const jsonJobs: IJob[] = JSON.parse(
     await readFile(
@@ -23,8 +24,10 @@ try {
   );
 
   const jobs = jsonJobs.map((job) => {
-    return { ...job, createBy: user?._id };
+    return { ...job, createdBy: user?._id };
   });
+
+  console.log('Example of saved job: ', jobs[0]);
 
   await jobModel.deleteMany({ createdBy: user?._id });
   await jobModel.create(jobs);
