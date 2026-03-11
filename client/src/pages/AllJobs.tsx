@@ -1,6 +1,9 @@
 import { toast } from 'react-toastify';
 
-import { useLoaderData } from 'react-router-dom';
+import {
+  useLoaderData,
+  type LoaderFunctionArgs,
+} from 'react-router-dom';
 import SearchContainer from '../components/SearchContainer';
 import JobsContainer from '../components/JobsContainer';
 import type { AxiosError } from 'axios';
@@ -13,16 +16,26 @@ interface JobContextInterface {
 }
 
 // eslint-disable-next-line
-export const loader = async (): Promise<
-  JobContextInterface | unknown
-> => {
+export const loader = async ({
+  request,
+}: LoaderFunctionArgs) => {
   try {
-    const { data } = await serverRequest.get('/jobs');
+    const params = Object.fromEntries([
+      ...new URL(request.url).searchParams.entries(),
+    ]);
+
+    const { data } = await serverRequest.get('/jobs', {
+      params,
+    });
+
     return {
       data,
+      searchValues: { ...params },
     };
   } catch (error) {
-    const axiosError = error as AxiosError<{ msg: string }>;
+    const axiosError = error as AxiosError<{
+      msg: string;
+    }>;
     toast.error(axiosError?.response?.data?.msg);
     return error;
   }

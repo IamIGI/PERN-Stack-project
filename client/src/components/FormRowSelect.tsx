@@ -1,13 +1,13 @@
 interface Props {
   name: string;
-  labelText: string;
+  labelText?: string;
   list: string[];
   defaultValue?: string;
 }
 
 const FormRowSelect = ({
   name,
-  labelText,
+  labelText = '',
   list,
   defaultValue = '',
 }: Props) => {
