@@ -1,12 +1,42 @@
 import { FormRow } from '.';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
-import { Form, Link } from 'react-router-dom';
-
+import { Form, Link, useSubmit } from 'react-router-dom';
 import FormRowSelect from './FormRowSelect';
-import SubmitBtn from './SubmitBtn';
 import { JobSortBy, JobStatus, JobType } from '../types';
+import { useAllJobsContext } from '../pages/AllJobs';
 
 const SearchContainer = () => {
+  const { searchValues } = useAllJobsContext();
+
+  const { search, jobStatus, jobType, sort } = searchValues;
+
+  const submit = useSubmit();
+
+  const debounce = (
+    onChange: (form: HTMLFormElement) => void,
+  ) => {
+    const timeInSeconds: number = 1.5;
+    let timeout: ReturnType<typeof setTimeout>;
+
+    return (
+      e: React.ChangeEvent<
+        | HTMLFormElement
+        | HTMLInputElement
+        | HTMLSelectElement
+      >,
+    ) => {
+      const form = e.currentTarget.form;
+
+      if (!form) return;
+
+      clearTimeout(timeout);
+
+      timeout = setTimeout(() => {
+        onChange(form);
+      }, timeInSeconds * 1000);
+    };
+  };
+
   return (
     <Wrapper>
       <Form className="form">
@@ -17,24 +47,36 @@ const SearchContainer = () => {
           <FormRow
             type="search"
             name="search"
-            defaultValue="a"
+            defaultValue={search}
+            onChange={debounce((form) => {
+              submit(form);
+            })}
           />
           <FormRowSelect
             labelText="job status"
             name="jobStatus"
             list={['all', ...Object.values(JobStatus)]}
-            defaultValue="all"
+            defaultValue={jobStatus}
+            onChange={debounce((form) => {
+              submit(form);
+            })}
           />
           <FormRowSelect
             labelText="job type"
             name="jobType"
             list={['all', ...Object.values(JobType)]}
-            defaultValue="all"
+            defaultValue={jobType}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
           <FormRowSelect
             name="sort"
-            defaultValue="newest"
+            defaultValue={sort}
             list={[...Object.values(JobSortBy)]}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
 
           <Link
@@ -43,8 +85,6 @@ const SearchContainer = () => {
           >
             Reset Search Values
           </Link>
-          {/* TEMP!!!! */}
-          <SubmitBtn />
         </div>
       </Form>
     </Wrapper>

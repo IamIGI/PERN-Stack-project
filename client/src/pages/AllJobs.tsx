@@ -9,10 +9,22 @@ import JobsContainer from '../components/JobsContainer';
 import type { AxiosError } from 'axios';
 import serverRequest from '../utils/serverRequest.utils';
 import { createContext, useContext } from 'react';
-import type { Job as IJob } from '../types';
+import type {
+  Job as IJob,
+  JobStatusType,
+  JobTypeType,
+} from '../types';
 
 interface JobContextInterface {
   data: { jobs: IJob[] };
+  searchValues: {
+    search?: string;
+    jobStatus?: JobStatusType | 'all';
+    jobType?: JobTypeType | 'all';
+    sort?: 'newest' | 'oldest' | 'a-z' | 'z-a';
+    page?: string;
+    limit?: string;
+  };
 }
 
 // eslint-disable-next-line
@@ -45,13 +57,15 @@ const AllJobsContext = createContext<JobContextInterface>({
   data: {
     jobs: [],
   },
+  searchValues: {},
 });
 
 const AllJobs = () => {
-  const { data } = useLoaderData<JobContextInterface>();
+  const { data, searchValues } =
+    useLoaderData<JobContextInterface>();
 
   return (
-    <AllJobsContext.Provider value={{ data }}>
+    <AllJobsContext.Provider value={{ data, searchValues }}>
       <SearchContainer />
       <JobsContainer />
     </AllJobsContext.Provider>
