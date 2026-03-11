@@ -1,15 +1,72 @@
 import { RequestHandler } from 'express';
-import jobModel from '../models/job.model';
+import jobModel, { IJob } from '../models/job.model';
 import { StatusCodes } from 'http-status-codes';
 import mongoose from 'mongoose';
 import day from 'dayjs';
+import { JobStatus, JobType } from '../utils/constants';
+
+interface JobQuery {
+  search?: string;
+  jobStatus?: JobStatus | 'all';
+  jobType?: JobType | 'all';
+  sort?: 'newest' | 'oldest' | 'a-z' | 'z-a';
+  page?: string;
+  limit?: string;
+}
 
 const getAllJobs: RequestHandler = async (req, res) => {
-  const jobs = await jobModel.find({
-    createdBy: req.user?.userId,
-  });
+  const { search, jobStatus, jobType, sort, page, limit } =
+    req.query as unknown as JobQuery;
 
-  res.status(StatusCodes.OK).json({ jobs });
+  const queryObject: mongoose.QueryFilter<IJob> = {
+    createdBy: req.user?.userId,
+  };
+
+  if (search) {
+    queryObject.$or = [
+      { position: { $regex: search, $options: 'i' } },
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  }
+  if (jobStatus && jobStatus !== 'all') {
+    queryObject.jobStatus = jobStatus as string;
+  }
+  if (jobType && jobType !== 'all') {
+    queryObject.jobType = jobType as string;
+  }
+
+  const sortOptions = {
+    newest: '-createdAt',
+    oldest: 'createdAt',
+    'a-z': 'position',
+    'z-a': '-position',
+  };
+
+  const sortKey =
+    sortOptions[sort as keyof typeof sortOptions] ||
+    sortOptions.newest;
+
+  //pagination
+  const pageNumber = Number(req.query.page) || 1;
+  const limitNumber = Number(req.query.limit) || 10;
+  const skip = (pageNumber - 1) * limitNumber;
+
+  const jobs = await jobModel
+    .find(queryObject)
+    .sort(sortKey)
+    .skip(skip)
+    .limit(limitNumber);
+
+  const totalJobs =
+    await jobModel.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalJobs / limitNumber);
+
+  res.status(StatusCodes.OK).json({
+    totalJobs,
+    numOfPages,
+    currentPage: page,
+    jobs,
+  });
 };
 
 const getJob: RequestHandler = async (req, res) => {

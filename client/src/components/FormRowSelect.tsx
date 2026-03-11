@@ -1,15 +1,19 @@
+import type { ChangeEvent } from 'react';
+
 interface Props {
   name: string;
-  labelText: string;
+  labelText?: string;
   list: string[];
   defaultValue?: string;
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const FormRowSelect = ({
   name,
-  labelText,
+  labelText = '',
   list,
   defaultValue = '',
+  onChange,
 }: Props) => {
   return (
     <div className="form-row">
@@ -21,6 +25,7 @@ const FormRowSelect = ({
         id={name}
         className="form-select"
         defaultValue={defaultValue}
+        onChange={onChange}
       >
         {list.map((itemValue) => {
           return (

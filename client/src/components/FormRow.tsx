@@ -1,10 +1,14 @@
-import type { HTMLInputTypeAttribute } from 'react';
+import type {
+  ChangeEvent,
+  HTMLInputTypeAttribute,
+} from 'react';
 
 interface Props {
   type: HTMLInputTypeAttribute;
   name: string;
   labelText?: string;
   defaultValue?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const FormRow = ({
@@ -12,6 +16,7 @@ const FormRow = ({
   name,
   labelText,
   defaultValue = '',
+  onChange,
 }: Props) => {
   return (
     <div className="form-row">
@@ -25,6 +30,7 @@ const FormRow = ({
         className="form-input"
         defaultValue={defaultValue}
         required
+        onChange={onChange}
       />
     </div>
   );
